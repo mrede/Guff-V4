@@ -25,6 +25,7 @@ alert("Starting Guff")
                         || userAgent.indexOf('ipad') != -1) ? true : false;
 
         
+        alert("userAgent"+userAgent) 
         //this.clickEvent = isiPhone ? 'tap' : 'click';
         //Set click event to tap as click is not used by any of our target devices
         this.clickEvent = 'tap';
@@ -70,6 +71,8 @@ alert("Starting Guff")
     },
     
     getLocation: function() {
+    	alert("GEO :"+navigator.geolocation)
+    	alert("Other Geo:"+geolocation)
         console.log('getting location, current WatchID: '+this.watchId);
         var o = this;
         this.watchId = navigator.geolocation.watchPosition(function(loc) {  o.checkAccuracy(loc); }, function(error) { o.errorHandler('geo', 'Unable to get location', error); }, {
