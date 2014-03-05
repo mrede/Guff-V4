@@ -100,12 +100,23 @@ var app = {
     },
 
     sendRegistration: function(id) {
-        $.ajax({
+        /*$.ajax({
           type: "GET",
           url: 'http://best-tool.benede.com/register?id='+id,
           
           success: app.registerSuccessHandler,
           dataType: 'json'
+        });
+*/
+        alert("Sending reg");
+        $.ajax({
+          type: 'get',
+          url: url: 'http://best-tool.benede.com/register?id='+id,
+          dataType: 'json',
+          timeout: 8000,
+          
+          success: app.registerSuccessHandler,
+          error: function(xhr, type){ alert("Error sending Reg"+xhr)}
         });
     },
 
