@@ -17,7 +17,7 @@ var Guff = {
 
     init: function() {
         //bind interactions - ******this should probably be moved till after we are happy with accuracy******
-
+alert("Starting Guff")
         // Determine if iPhone, Android or Desktop OS and setup the right click-event ("tap" vs "click").
         var userAgent = navigator.userAgent.toLowerCase();
         var isiPhone = (userAgent.indexOf('iphone') != -1
@@ -300,6 +300,7 @@ var Guff = {
 
 $(function(){
     //var guff = new Guff();
+    alert("FUNCTION")
     Guff.init();
 });
 
