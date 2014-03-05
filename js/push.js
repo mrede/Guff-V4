@@ -116,7 +116,7 @@ var app = {
           timeout: 8000,
           
           success: app.registerSuccessHandler,
-          error: function(xhr, type){ alert("Error sending Reg"+xhr)}
+          error: function(xhr, type){ alert("Error sending Reg"+xhr+", "+type)}
         });
     },
 
