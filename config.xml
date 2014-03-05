@@ -6,14 +6,14 @@
         id        = "com.label.IntolerantYouth"
         version   = "1.0.0">
 
-    <name>Intolerant Youth</name>
+    <name>Guff</name>
 
     <description>
-        Test for Push apps
+        Guff App V3
     </description>
 
-    <author href="http://phonegap.com" email="support@phonegap.com">
-        PhoneGap Team
+    <author href="http://thisislabel.co.uk" email="guff@thisislabel.co.uk">
+        Label
     </author>
 
     <!--
