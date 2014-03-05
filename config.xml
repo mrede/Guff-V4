@@ -54,6 +54,7 @@
     <gap:plugin name="com.phonegap.plugins.pushplugin" />
     <gap:plugin name="org.apache.cordova.console" />
     <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.geolocation" />
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
