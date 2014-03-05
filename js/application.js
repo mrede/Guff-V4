@@ -75,7 +75,7 @@ alert("Starting Guff")
 
         console.log('getting location, current WatchID: '+this.watchId);
         var o = this;
-        this.watchId = navigator.geolocation.watchPosition(function(loc) {  o.checkAccuracy(loc); }, function(error) { o.errorHandler('geo', 'Unable to get location', error); }, {
+        this.watchId = navigator.geolocation.watchPosition(function(loc) {  Guff.checkAccuracy(loc); }, function(error) { o.errorHandler('geo', 'Unable to get location', error); }, {
             enableHighAccuracy: true,
             maximumAge: 1000
         });
