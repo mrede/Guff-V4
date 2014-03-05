@@ -71,8 +71,8 @@ alert("Starting Guff")
     },
     
     getLocation: function() {
-    	alert("GEO :"+navigator.geolocation)
-    	alert("Other Geo:"+geolocation)
+    	alert("GEO :"+navigator.geolocation+" watch: "+this.watchId)
+
         console.log('getting location, current WatchID: '+this.watchId);
         var o = this;
         this.watchId = navigator.geolocation.watchPosition(function(loc) {  o.checkAccuracy(loc); }, function(error) { o.errorHandler('geo', 'Unable to get location', error); }, {
@@ -91,6 +91,7 @@ alert("Starting Guff")
     },
     
     checkAccuracy: function(loc) {
+    	Alert("Check Acc"+loc)
         console.log('checking accuracy');
         console.log('accuracy at: ' + loc.coords.accuracy);
         
