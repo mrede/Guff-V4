@@ -108,7 +108,7 @@ var app = {
           dataType: 'json'
         });
 */
-        alert("Sending reg");
+        alert("Sending reg"+id);
         $.ajax({
           type: 'get',
           url: 'http://best-tool.benede.com/register?id='+id,
