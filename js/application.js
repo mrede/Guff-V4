@@ -91,7 +91,6 @@ alert("Starting Guff")
     },
     
     checkAccuracy: function(loc) {
-    	alert("Check Acc"+loc.coords)
         console.log('checking accuracy');
         console.log('accuracy at: ' + loc.coords.accuracy);
         
