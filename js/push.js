@@ -111,7 +111,7 @@ var app = {
         alert("Sending reg");
         $.ajax({
           type: 'get',
-          url: url: 'http://best-tool.benede.com/register?id='+id,
+          url: 'http://best-tool.benede.com/register?id='+id,
           dataType: 'json',
           timeout: 8000,
           
