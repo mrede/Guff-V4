@@ -147,7 +147,7 @@ alert("Starting Guff")
     getMessages: function(lat, lng, list) {
         console.log('getting messages');
         var o = this;
-        var message_data = "http://"+o.url+"/messages/"+lat+"/"+lng;
+        var message_data = "http://"+o.url+"/message/"+lat+"/"+lng;
         var list = list;
         console.log(message_data);
         $.ajax({
@@ -172,10 +172,9 @@ alert("Starting Guff")
     },
         
     postMessage: function() {
-        alert("SET UP SUBMIT"+app.token_id)
+        
         var o = this;
         $('#send-guff').on('submit', function(e){
-            alert("SUBMIT")
             
             //disable button till successful submission or error
             $("#submitGuff").off('click');
@@ -193,7 +192,7 @@ alert("Starting Guff")
                             o.notificationHandler('success','Message posted');
                             //Trigger doesn't work on iphone or android
 
-                            $("#back").trigger(o.clickEvent);
+                            $("#back").trigger(Guff.clickEvent);
                             o.resetMessageField();
                             o.enableSubmit();
                             o.getMessages(o.loc.coords.latitude, o.loc.coords.longitude, "#messages"); 
