@@ -99,7 +99,7 @@ var app = {
         }
     },
 
-    sendRegistration: function(id, type) {
+    sendRegistration: function(id, platform) {
         /*$.ajax({
           type: "GET",
           url: 'http://best-tool.benede.com/register?id='+id,
@@ -108,10 +108,10 @@ var app = {
           dataType: 'json'
         });
 */
-        alert("Sending reg"+id);
+        alert("Sending reg to"+'http://dev.guff.me.uk/register/'+platform+'.json?token='+id);
         $.ajax({
           type: 'get',
-          url: 'http://dev.guff.me.uk/register/'+type+'.json?token='+id,
+          url: 'http://dev.guff.me.uk/register/'+platform+'.json?token='+id,
           dataType: 'json',
           timeout: 8000,
           
