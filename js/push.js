@@ -101,7 +101,7 @@ var app = {
 
     sendRegistration: function(id, platform) {
 
-        alert("Sending reg to"+'http://dev.guff.me.uk/register/'+platform+'.json?token='+id);
+        //alert("Sending reg to"+'http://dev.guff.me.uk/register/'+platform+'.json?token='+id);
         $.ajax({
           type: 'get',
           url: 'http://dev.guff.me.uk/register/'+platform+'.json?token='+id,
