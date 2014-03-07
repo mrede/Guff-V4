@@ -58,12 +58,10 @@ var app = {
             });
 
         }
-        alert("END");
-
     },
 
     pushRegisterSuccessHandler: function(result) {
-        alert('Callback Success! Result = '+result)
+        //alert('Callback Success! Result = '+result)
     },
 
     pushRegisterErrorHandler: function(error) {
@@ -80,7 +78,7 @@ var app = {
                     console.log("Regid " + e.regid);
                     
                     
-                    alert('registration id = '+e.regid);
+                    //alert('registration id = '+e.regid);
                     app.token_id = e.regid;
                     app.sendRegistration(e.regid, 'android')
                 }
@@ -120,7 +118,7 @@ var app = {
     },
 
     pushRegisterSuccessIosHandler: function(result) {
-        alert('IOS Callback Success! Result = '+result)
+        //alert('IOS Callback Success! Result = '+result)
         app.token_id = result;
         app.sendRegistration(result, 'ios');
     },

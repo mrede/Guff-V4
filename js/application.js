@@ -17,7 +17,7 @@ var Guff = {
 
     init: function() {
         //bind interactions - ******this should probably be moved till after we are happy with accuracy******
-alert("Starting Guff")
+
         // Determine if iPhone, Android or Desktop OS and setup the right click-event ("tap" vs "click").
         var userAgent = navigator.userAgent.toLowerCase();
         var isiPhone = (userAgent.indexOf('iphone') != -1
@@ -25,7 +25,7 @@ alert("Starting Guff")
                         || userAgent.indexOf('ipad') != -1) ? true : false;
 
         
-        alert("This: "+this) 
+        
         //this.clickEvent = isiPhone ? 'tap' : 'click';
         //Set click event to tap as click is not used by any of our target devices
         Guff.clickEvent = 'tap';
@@ -71,7 +71,7 @@ alert("Starting Guff")
     },
     
     getLocation: function() {
-    	alert("GEO :"+navigator.geolocation+" watch: "+this.watchId)
+    	
 
         console.log('getting location, current WatchID: '+this.watchId);
         var o = this;
@@ -243,7 +243,7 @@ alert("Starting Guff")
             if (minutes > 115) {
                 var mOld = 121-minutes;
                 var mS = mOld > 1 ? 's':'';
-                time_message = mOld+"m "+mS+"ago";
+                time_message = mOld+"m"+mS+"ago";
             } else {
                 time_message = 'under 2 hours left ';
             }
