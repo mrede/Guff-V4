@@ -243,7 +243,7 @@ var Guff = {
             if (minutes > 115) {
                 var mOld = 121-minutes;
                 var mS = mOld > 1 ? 's':'';
-                time_message = mOld+"m"+mS+"ago";
+                time_message = mOld+"m"+mS+" ago";
             } else {
                 time_message = 'under 2 hours left ';
             }
