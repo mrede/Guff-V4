@@ -17,7 +17,7 @@
  * under the License.
  */
 var app = {
-    token_id = null,
+    token_id: null,
     // Application Constructor
     initialize: function() {
         this.bindEvents();
