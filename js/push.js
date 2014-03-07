@@ -80,7 +80,7 @@ var app = {
                     
                     
                     alert('registration id = '+e.regid);
-                    app.sendRegistration(e.regid)
+                    app.sendRegistration(e.regid, 'android')
                 }
             break;
  
@@ -99,7 +99,7 @@ var app = {
         }
     },
 
-    sendRegistration: function(id) {
+    sendRegistration: function(id, type) {
         /*$.ajax({
           type: "GET",
           url: 'http://best-tool.benede.com/register?id='+id,
@@ -111,7 +111,7 @@ var app = {
         alert("Sending reg"+id);
         $.ajax({
           type: 'get',
-          url: 'http://best-tool.benede.com/test.php?id='+id,
+          url: 'http://dev.guff.me.uk/register/'+type+'.json?token='+id,
           dataType: 'json',
           timeout: 8000,
           
@@ -126,7 +126,7 @@ var app = {
 
     pushRegisterSuccessIosHandler: function(result) {
         alert('IOS Callback Success! Result = '+result)
-        app.sendRegistration(result);
+        app.sendRegistration(result, 'ios');
     },
 
     pushRegisterErrorIosHandler: function(error) {

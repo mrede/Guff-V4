@@ -94,7 +94,7 @@
     -->
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
     <access origin="http://maps.google.com/*" />
-    <access origin="http://best-tool.benede.com/*"/> 
+    <access origin="http://dev.guff.me.uk/*"/> 
 
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/
