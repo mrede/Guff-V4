@@ -100,14 +100,7 @@ var app = {
     },
 
     sendRegistration: function(id, platform) {
-        /*$.ajax({
-          type: "GET",
-          url: 'http://best-tool.benede.com/register?id='+id,
-          
-          success: app.registerSuccessHandler,
-          dataType: 'json'
-        });
-*/
+
         alert("Sending reg to"+'http://dev.guff.me.uk/register/'+platform+'.json?token='+id);
         $.ajax({
           type: 'get',
