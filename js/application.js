@@ -166,7 +166,7 @@ alert("Starting Guff")
         var o = this;
         var append = '';
         $(data).each(function(){
-            append += "<li><p>"+this.m+"</p><span>"+o.remaningMessageTime(7190)+"</span></li>";
+            append += "<li><p>"+this.m+"</p><span>"+o.remaningMessageTime(this.t)+"</span></li>";
         });
         $(list).html(append);
     },
