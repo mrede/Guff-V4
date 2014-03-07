@@ -147,7 +147,7 @@ var Guff = {
     getMessages: function(lat, lng, list) {
         console.log('getting messages');
         var o = this;
-        var message_data = "http://"+o.url+"/message/"+lat+"/"+lng;
+        var message_data = "http://"+o.url+"/message/"+lat+"/"+lng+"/"+app.token_id;
         var list = list;
         console.log(message_data);
         $.ajax({
