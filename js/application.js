@@ -172,7 +172,7 @@ alert("Starting Guff")
     },
         
     postMessage: function() {
-        alert("SET UP SUBMIT")
+        alert("SET UP SUBMIT"+app.token_id)
         var o = this;
         $('#send-guff').on('submit', function(e){
             alert("SUBMIT")
@@ -181,11 +181,11 @@ alert("Starting Guff")
             $("#submitGuff").off('click');
             
             if ($('#message').attr('value').length>0) {
-                o.getTokenID(function(tokenID) {
+                
                     $.ajax({
                          url: $('#send-guff').attr('action'),
                          type: 'post',
-                         data: $('#send-guff').serialize()+"&tokenID="+tokenID,
+                         data: $('#send-guff').serialize()+"&token="+app.token_id,
                          dataType: 'json',
                          timeout: 8000,
                          success: function(data) { 
@@ -200,7 +200,7 @@ alert("Starting Guff")
                          },
                          error: function(xhr, type){ o.errorHandler('ajax', xhr, type); }
                     });
-                });
+                
             } else {
                 //o.errorHandler('user', 'You need to write something', '');
                 console.log('You need to write something')

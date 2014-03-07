@@ -17,6 +17,7 @@
  * under the License.
  */
 var app = {
+    token_id = null,
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -80,6 +81,7 @@ var app = {
                     
                     
                     alert('registration id = '+e.regid);
+                    app.token_id = e.regid;
                     app.sendRegistration(e.regid, 'android')
                 }
             break;
@@ -119,6 +121,7 @@ var app = {
 
     pushRegisterSuccessIosHandler: function(result) {
         alert('IOS Callback Success! Result = '+result)
+        app.token_id = result;
         app.sendRegistration(result, 'ios');
     },
 
