@@ -162,7 +162,7 @@ alert("Starting Guff")
     },
     
     parseMessages: function(data, list) {
-        console.log('parsing messages messages');
+        console.log('parsing messages messages', data);
         var o = this;
         var append = '';
         $(data).each(function(){
