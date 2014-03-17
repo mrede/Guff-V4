@@ -5,6 +5,8 @@ angular.module('starter.controllers', [])
   
   $scope.messages = MessageService.all();
 
+  console.log($scope.messages);
+  
   $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
     $scope.modal = modal;
   }, {
