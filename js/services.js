@@ -155,8 +155,9 @@ angular.module('starter.services', [])
 
 function fail_bounce(e)
 {
+  alert("FAIL BOUNCE")
   console.log("Fail_bounce called");
   //# Get The PushTest controller and call the test on it
-  angular.element(document.querySelector("#CHEESE")).scope().cheeseTest(e);
+  angular.element(document.querySelector("#home")).scope().cheeseTest(e);
 
 }
