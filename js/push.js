@@ -18,26 +18,9 @@
  */
 var app = {
     token_id: null,
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
+    
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    register: function(id) {
 
         var pushNotification = window.plugins.pushNotification;
 
@@ -102,15 +85,23 @@ var app = {
     sendRegistration: function(id, platform) {
 
         //alert("Sending reg to"+'http://dev.guff.me.uk/register/'+platform+'.json?token='+id);
-        $.ajax({
-          type: 'get',
-          url: 'http://dev.guff.me.uk/register/'+platform+'.json?token='+id,
-          dataType: 'json',
-          timeout: 8000,
+        // $.ajax({
+        //   type: 'get',
+        //   url: 'http://dev.guff.me.uk/register/'+platform+'.json?token='+id,
+        //   dataType: 'json',
+        //   timeout: 8000,
           
-          success: app.registerSuccessHandler,
-          error: function(xhr, type){ alert("Error sending Reg"+xhr+", "+type)}
-        });
+        //   success: app.registerSuccessHandler,
+        //   error: function(xhr, type){ alert("Error sending Reg"+xhr+", "+type)}
+        // });
+
+        $http({method: 'GET', url: 'http://dev.guff.me.uk/register/'+platform+'.json?token='+id,}).
+    		success(function(data, status, headers, config) {
+		      console.log("REgister success");
+		    }).
+		    error(function(data, status, headers, config) {
+		      console.log("ERROR registering")
+		    });
     },
 
     registerSuccessHandler: function(e) {
