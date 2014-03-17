@@ -1,26 +1,11 @@
-<div id="home" class="bar bar-header bar-positive bar-positive">
+<div id="home" class="bar bar-header bar-dark">
   
-  <h1 class="title">Header Buttons</h1>
-  <button ng-click='modal.show();' class="button icon ion-navicon"></button>
+  <h1 class="title">Messages</h1>
+  <button ng-click='modal.show();' class="button button-calm icon ion-compose"></button>
 </div>
 
-<ul class="list">
-    <li class="item">
-      asd
-    </li>
-    <li class="item">
-      asd
-    </li>
-    <li class="item">
-      asd
-    </li>
-    <li class="item">
-      asd
-    </li>
-    <li class="item">
-      asd
-    </li>
-    <li class="item">
-      asd
-    </li>
-</ul>
+<ion-list>
+  <ion-item ng-repeat="message in messages" type="item-text-wrap">
+    {{message.text}}
+  </ion-item>
+</ion-list>

@@ -1,5 +1,27 @@
 angular.module('starter.services', [])
 
+.factory('MessageService', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var messages = [
+    { id: 0, text: "Why can't Google and Facebook come up with a solution to Silicon Valley's pollution crisis? http://trib.al/k1Yz7lV" },
+    { id: 1, text: "Think Silicon Valley' pollution can't hurt you? Think again. Join our Q&A with @CIRonline now to learn more http://trib.al/JZ9c3tO" },
+    { id: 2, text: "MPs and open-data advocates slam postcode selloff http://bit.ly/1kCLsA6" },
+    { id: 3, text: "CarPlay could be a very smart way to hitch a ride on in-car systems http://bit.ly/1iwiEct" }
+  ];
+
+  return {
+    all: function() {
+      return messages;
+    },
+    get: function(messageId) {
+      // Simple index lookup
+      return messages[messageId];
+    }
+  }
+})
+
 /**
  * A simple example service that returns some data.
  */

@@ -1,8 +1,10 @@
 angular.module('starter.controllers', [])
 
 // A simple controller that fetches a list of data from a service
-.controller('HomeCtrl', function($scope, $http, PushService, $ionicModal) {
+.controller('HomeCtrl', function($scope, $http, PushService, $ionicModal, MessageService) {
   
+  $scope.messages = MessageService.all();
+
   $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
     $scope.modal = modal;
   }, {
