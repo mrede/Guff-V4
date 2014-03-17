@@ -22,6 +22,45 @@ angular.module('starter.services', [])
   }
 })
 
+.factory('GetLocationService', [ '$q', '$window', function($q, $window) {
+  // Might use a resource here that returns a JSON array
+
+  var errors = [
+    { id: 0, message: "Phone does not support location services" },
+    { id: 1, message: "You have rejected access to your location" },
+    { id: 2, message: "Unable to determine your location" },
+    { id: 3, message: "Service timeout has been reached" },
+  ];
+
+  return {
+    getLocation: function(opts) {
+      var deferred = $q.defer();
+      if ($window.navigator && $window.navigator.geolocation) {
+        $window.navigator.geolocation.getCurrentPosition(function(position){
+          deferred.resolve(position);
+        }, function(error) {
+          switch (error.code) {
+            case 1:
+                deferred.reject(errors[1]);
+              break;
+            case 2:
+                deferred.reject(errors[2]);
+              break;
+            case 3:
+                deferred.reject(errors[3]);
+              break;
+          }
+        }, opts);
+      }
+      else
+      {
+        deferred.reject(errors[0]);
+      }
+      return deferred.promise;
+    }
+  }
+}])
+
 /**
  * A simple example service that returns some data.
  */

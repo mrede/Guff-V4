@@ -1,8 +1,4 @@
 /* Your app's CSS, go crazy, make it your own */
-
-.ionic-logo {
-  display: block;
-  margin: 15px auto;
-  width: 96px;
-  height: 96px;
+.loading-backdrop.enabled {
+	background-color: rgba(67, 206, 230, 0.7);
 }

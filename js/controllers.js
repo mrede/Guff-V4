@@ -1,12 +1,46 @@
 angular.module('starter.controllers', [])
 
 // A simple controller that fetches a list of data from a service
-.controller('HomeCtrl', function($scope, $http, PushService, $ionicModal, MessageService) {
+.controller('HomeCtrl', function($scope, $http, PushService, $ionicModal, $ionicLoading, GetLocationService, MessageService) {
   
-  $scope.messages = MessageService.all();
+  // Show the loading overlay and text
+  $scope.loading = $ionicLoading.show({
 
-  console.log($scope.messages);
+    // The text to display in the loading indicator
+    content: 'Checking in',
+
+    // The animation to use
+    animation: 'fade-in',
+
+    // Will a dark overlay or backdrop cover the entire view
+    showBackdrop: true,
+
+    // The maximum width of the loading indicator
+    // Text will be wrapped if longer than maxWidth
+    maxWidth: 200,
+
+    // The delay in showing the indicator
+    showDelay: 250
+  });
+
+  GetLocationService.getLocation().then(function(data){
+    
+    $scope.coordinates = {lat:data.coords.latitude, long:data.coords.longitude};
+    console.log($scope.coordinates);
+
+    $scope.messages = MessageService.all();
+    console.log($scope.messages);
+
+    $scope.loading.hide();
+
+  }, function(data) {
+    console.log(data);
+  });
+
   
+
+  
+
   $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
     $scope.modal = modal;
   }, {
@@ -38,16 +72,19 @@ angular.module('starter.controllers', [])
   
 })
 
+.controller('GetLocationCtrl', function($scope) {
+
+})
+
 .controller('ModalCtrl', function($scope) {
   
-  $scope.newUser = {}; 
-  console.log("YP EHRJEHRKHEWKRJHKJ")
+  $scope.newUser = {};
   
   $scope.createContact = function() {
     console.log('Create Contact', $scope.newUser);
     $scope.modal.hide();
   };
   
-})
+});
 
 
