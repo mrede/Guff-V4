@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
     .state('home', {
       url: "/home",
       templateUrl: "templates/home.html",
-      controller: 'AppCtrl'
+      controller: 'HomeCtrl'
     });
 
 

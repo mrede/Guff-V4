@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 // A simple controller that fetches a list of data from a service
-.controller('AppCtrl', function($scope, $ionicModal) {
+.controller('HomeCtrl', function($scope, $http, PushService, $ionicModal) {
   
   $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
     $scope.modal = modal;
@@ -10,15 +10,6 @@ angular.module('starter.controllers', [])
     focusFirstInput: true
   });
 
-})
-
-
-
-
-// A simple controller that fetches a list of data from a service
-.controller('LocationCtrl', function($scope, $http, PushService, $ionicModal) {
-  // "Pets" is a service returning mock data (services.js)
-  console.log("LocationCtrl");
 
   var storage = window.localStorage;
   var push_token = false;
