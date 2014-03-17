@@ -24,6 +24,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.cheeseTest= function(e) {
+    alert("DHDDHHDHD")
         console.log("POOOOOOT from cheese Test", $http, "E: ",e)  
 
         PushService.onNotificationGCM($http, e)    
