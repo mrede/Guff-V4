@@ -57,7 +57,7 @@ angular.module('starter.controllers', [])
 
   $scope.handlePushNotification = function(e) {
     alert("Push Notification Received");
-    console.log("Push Notification Received", $http, "E: ",e)  
+    console.log("Push Notification Received")  
 
     PushService.onNotificationGCM($http, e);
     $scope.token_id = PushService.token_id;
