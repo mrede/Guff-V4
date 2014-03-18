@@ -61,6 +61,13 @@ angular.module('starter.controllers', [])
         PushService.onNotificationGCM($http, e)    
     }
 
+  $scope.handlePushNotification = function(e) {
+    alert("Push Notification Received");
+    console.log("Push Notification Received", $http, "E: ",e)  
+
+    PushService.onNotificationGCM($http, e)    
+  }
+
   
 })
 
