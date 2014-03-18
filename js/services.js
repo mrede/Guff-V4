@@ -31,9 +31,9 @@ angular.module('starter.services', [])
       } else {
         deferred.reject(errors[0]);
       }
-      
+      return deferred.promise;  
     }
-    return deferred.promise;
+    
   }
 }])
 
