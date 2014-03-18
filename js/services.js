@@ -15,9 +15,9 @@ angular.module('starter.services', [])
     all: function(loc) {
 
       var deferred = $q.defer();
-      var endpoint = environment + "/" + loc.lat + "/" + loc.long; //app.token_id
+      var endpoint = environment + "/" + loc.lat + "/" + loc.long +"/123"; //app.token_id
 
-      if($window.navigator.network.connection.type != Connection.NONE){
+      if($window.navigator.onLine){
         
         //needs timeout
         $http({method: 'GET', url: endpoint}).
