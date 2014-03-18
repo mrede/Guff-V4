@@ -34,7 +34,15 @@ angular.module('starter.services', [])
 
   return {
     getLocation: function(opts) {
+      
       var deferred = $q.defer();
+      //could pass them in using opts var
+      var options = {
+        enableHighAccuracy: true,
+        timeout: 600000, // more than ten minutes old
+        maximumAge: 0
+      };
+
       if ($window.navigator && $window.navigator.geolocation) {
         $window.navigator.geolocation.getCurrentPosition(function(position){
           deferred.resolve(position);
@@ -50,7 +58,7 @@ angular.module('starter.services', [])
                 deferred.reject(errors[3]);
               break;
           }
-        }, opts);
+        }, options);
       }
       else
       {
@@ -58,6 +66,7 @@ angular.module('starter.services', [])
       }
       return deferred.promise;
     }
+
   }
 }])
 

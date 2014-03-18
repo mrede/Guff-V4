@@ -3,44 +3,33 @@ angular.module('starter.controllers', [])
 // A simple controller that fetches a list of data from a service
 .controller('HomeCtrl', function($scope, $http, PushService, $ionicModal, $ionicLoading, GetLocationService, MessageService) {
   
-  // Show the loading overlay and text
-  $scope.loading = $ionicLoading.show({
+  
+  $scope.getLoc = function() {
 
-    // The text to display in the loading indicator
-    content: 'Checking in',
+    //show loading screen
+    $scope.loading = $ionicLoading.show({
+      content: 'Checking in',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 250
+    });
 
-    // The animation to use
-    animation: 'fade-in',
-
-    // Will a dark overlay or backdrop cover the entire view
-    showBackdrop: true,
-
-    // The maximum width of the loading indicator
-    // Text will be wrapped if longer than maxWidth
-    maxWidth: 200,
-
-    // The delay in showing the indicator
-    showDelay: 250
-  });
-
-  GetLocationService.getLocation().then(function(data){
+    //location service call
+    GetLocationService.getLocation().then(function(data){
     
-    $scope.coordinates = {lat:data.coords.latitude, long:data.coords.longitude};
-    console.log($scope.coordinates);
+      $scope.coordinates = {lat:data.coords.latitude, long:data.coords.longitude};
+      $scope.messages = MessageService.all();
+      $scope.loading.hide();
 
-    $scope.messages = MessageService.all();
-    console.log($scope.messages);
+    }, function(data) {
+      console.log(data);
+    });
 
-    $scope.loading.hide();
+  };
+  $scope.getLoc(); //get location
 
-  }, function(data) {
-    console.log(data);
-  });
-
-  
-
-  
-
+  //send message modal  
   $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
     $scope.modal = modal;
   }, {
@@ -48,7 +37,7 @@ angular.module('starter.controllers', [])
     focusFirstInput: true
   });
 
-
+  //push
   var storage = window.localStorage;
   var push_token = false;
 
@@ -68,12 +57,7 @@ angular.module('starter.controllers', [])
         PushService.onNotificationGCM($http, e)    
     }
 
-    
   
-})
-
-.controller('GetLocationCtrl', function($scope) {
-
 })
 
 .controller('ModalCtrl', function($scope) {
