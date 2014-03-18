@@ -111,7 +111,7 @@ angular.module('starter.services', [])
           if ( device.platform == 'android' || device.platform == 'Android' )
           {
               alert("ANDROID");
-              pushNotification.register(app.pushRegisterSuccessHandler, app.pushRegisterErrorHandler,{"senderID":"507474617924","ecb":'angular.element(document.querySelector("#home")).scope().handlePushNotification(e)'});
+              pushNotification.register(app.pushRegisterSuccessHandler, app.pushRegisterErrorHandler,{"senderID":"507474617924","ecb":'angular.element(document.querySelector("#home")).scope().handlePushNotification'});
           } else {
               //IOS
               alert("Doing IOS");
