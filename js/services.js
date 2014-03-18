@@ -12,10 +12,10 @@ angular.module('starter.services', [])
   var environment = "http://dev.guff.me.uk/message/";  
 
   return {
-    all: function(loc) {
+    all: function(loc, token) {
 
       var deferred = $q.defer();
-      var endpoint = environment + "/" + loc.lat + "/" + loc.long +"/123"; //app.token_id
+      var endpoint = environment + "/" + loc.lat + "/" + loc.long + token; //app.token_id
 
       if($window.navigator.onLine){
         
@@ -237,12 +237,3 @@ angular.module('starter.services', [])
 
 });
 
-
-function fail_bounce(e)
-{
-  alert("FAIL BOUNCE")
-  console.log("Fail_bounce called");
-  //# Get The PushTest controller and call the test on it
-  angular.element(document.querySelector("#home")).scope().cheeseTest(e);
-
-}
