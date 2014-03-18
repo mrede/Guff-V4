@@ -1,26 +1,41 @@
 angular.module('starter.services', [])
 
-.factory('MessageService', function() {
+.factory('MessageService', [ '$q', '$window', '$http', function($q, $window, $http) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var messages = [
-    { id: 0, text: "Why can't Google and Facebook come up with a solution to Silicon Valley's pollution crisis? http://trib.al/k1Yz7lV" },
-    { id: 1, text: "Think Silicon Valley' pollution can't hurt you? Think again. Join our Q&A with @CIRonline now to learn more http://trib.al/JZ9c3tO" },
-    { id: 2, text: "MPs and open-data advocates slam postcode selloff http://bit.ly/1kCLsA6" },
-    { id: 3, text: "CarPlay could be a very smart way to hitch a ride on in-car systems http://bit.ly/1iwiEct" }
+  var errors = [
+    { id: 0, message: "You don't appear to have an internet connection" },
+    { id: 1, message: "There has been a problem retrieving messages" },
   ];
 
+  var environment = "http://dev.guff.me.uk/message/";  
+
   return {
-    all: function() {
-      return messages;
-    },
-    get: function(messageId) {
-      // Simple index lookup
-      return messages[messageId];
+    all: function(loc) {
+
+      var deferred = $q.defer();
+      var endpoint = environment + "/" + loc.lat + "/" + loc.long; //app.token_id
+
+      if($window.navigator.network.connection.type != Connection.NONE){
+        
+        //needs timeout
+        $http({method: 'GET', url: endpoint}).
+        success(function(data, status, headers, config) {
+          deferred.resolve(data);
+        }).
+        error(function(data, status, headers, config) {
+          deferred.reject(errors[1]);
+        });
+
+      } else {
+        deferred.reject(errors[0]);
+      }
+      
     }
+    return deferred.promise;
   }
-})
+}])
 
 .factory('GetLocationService', [ '$q', '$window', function($q, $window) {
   // Might use a resource here that returns a JSON array
@@ -73,7 +88,7 @@ angular.module('starter.services', [])
 /**
  * A simple example service that returns some data.
  */
- .factory('PushService', function() {
+.factory('PushService', function() {
 
   var pushNotification = false;
   console.log("window.plugins: "+window.plugins)

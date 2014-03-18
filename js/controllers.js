@@ -3,10 +3,10 @@ angular.module('starter.controllers', [])
 // A simple controller that fetches a list of data from a service
 .controller('HomeCtrl', function($scope, $http, PushService, $ionicModal, $ionicLoading, GetLocationService, MessageService) {
   
-  
+
   $scope.getLoc = function() {
 
-    //show loading screen
+    // show loading screen
     $scope.loading = $ionicLoading.show({
       content: 'Checking in',
       animation: 'fade-in',
@@ -15,11 +15,11 @@ angular.module('starter.controllers', [])
       showDelay: 250
     });
 
-    //location service call
+    // location service call
     GetLocationService.getLocation().then(function(data){
     
       $scope.coordinates = {lat:data.coords.latitude, long:data.coords.longitude};
-      $scope.messages = MessageService.all();
+      $scope.getMessages();
       $scope.loading.hide();
 
     }, function(data) {
@@ -27,9 +27,13 @@ angular.module('starter.controllers', [])
     });
 
   };
-  $scope.getLoc(); //get location
+  $scope.getLoc(); // get location
 
-  //send message modal  
+  $scope.getMessages = function() {
+    MessageService.all($scope.coordinates);
+  };// get messages
+
+  // send message modal  
   $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
     $scope.modal = modal;
   }, {
@@ -37,7 +41,7 @@ angular.module('starter.controllers', [])
     focusFirstInput: true
   });
 
-  //push
+  // push
   var storage = window.localStorage;
   var push_token = false;
 
