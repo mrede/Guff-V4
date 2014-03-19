@@ -185,7 +185,7 @@ angular.module('starter.services', [])
                             "badge": "true",
                             "sound": "true",
                             "alert": "true",
-                            "ecb": 'angular.element(document.querySelector("#home")).scope().handleAPNPushNotification'
+                            "ecb": 'angular.element(document.querySelector("#home")).scope().handleApnPushNotification'
                         });
 
                 }
