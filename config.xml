@@ -58,7 +58,7 @@
     <gap:plugin name="org.apache.cordova.console" version="0.1.0" />
     <gap:plugin name="org.apache.cordova.device" version="0.2.3" />
     <gap:plugin name="org.apache.cordova.geolocation" version="0.3.2" />
-    <gap:plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
+    <gap:plugin name="org.apache.cordova.network-information" version="0.2.7" />
 
     <!-- Define app icon for each platform. -->
     <icon src="icon.png" />
