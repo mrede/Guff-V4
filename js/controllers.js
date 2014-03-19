@@ -55,11 +55,20 @@ angular.module('starter.controllers', [])
   	PushService.register();
   }
 
-  $scope.handlePushNotification = function(e) {
+  $scope.handleGcmPushNotification = function(e) {
     alert("Push Notification Received");
     console.log("Push Notification Received")  
 
     PushService.onNotificationGCM($http, e);
+    $scope.token_id = PushService.token_id;
+    console.log("Token ID: ", $scope.token_id);  
+  }
+
+  $scope.handleApnPushNotification = function(e) {
+    alert("Push Notification Received");
+    console.log("Push Notification Received")  
+
+    PushService.onNotificationAPN($http, e);
     $scope.token_id = PushService.token_id;
     console.log("Token ID: ", $scope.token_id);  
   }

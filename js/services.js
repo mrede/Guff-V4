@@ -111,7 +111,11 @@ angular.module('starter.services', [])
           if ( device.platform == 'android' || device.platform == 'Android' )
           {
               alert("ANDROID");
-              pushNotification.register(app.pushRegisterSuccessHandler, app.pushRegisterErrorHandler,{"senderID":"507474617924","ecb":'angular.element(document.querySelector("#home")).scope().handlePushNotification'});
+              pushNotification.register(
+                app.pushRegisterSuccessHandler, 
+                app.pushRegisterErrorHandler,
+                {"senderID":"507474617924","ecb":'angular.element(document.querySelector("#home")).scope().handleGcmPushNotification'}
+              );
           } else {
               //IOS
               alert("Doing IOS");
@@ -121,7 +125,7 @@ angular.module('starter.services', [])
                   "badge":"true",
                   "sound":"true",
                   "alert":"true",
-                  "ecb":"app.onNotificationAPN"
+                  "ecb": 'angular.element(document.querySelector("#home")).scope().handleAPNPushNotification'
               });
 
           }
@@ -203,7 +207,7 @@ angular.module('starter.services', [])
           alert('IOS Callback Error! Error = '+error)
       },
 
-      onNotificationAPN: function(event) {
+      onNotificationAPN: function($http, event) {
           if ( event.alert )
           {
               alert(event.alert);
