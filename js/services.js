@@ -98,7 +98,7 @@ angular.module('starter.services', [])
                 var deferred = $q.defer();
                 //could pass them in using opts var
                 var options = {
-                    enableHighAccuracy: true,
+                    enableHighAccuracy: false,
                     timeout: 600000, // more than ten minutes old
                     maximumAge: 0
                 };
