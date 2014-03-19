@@ -110,7 +110,6 @@ angular.module('starter.services', [])
 
           if ( device.platform == 'android' || device.platform == 'Android' )
           {
-              alert("ANDROID");
               pushNotification.register(
                 app.pushRegisterSuccessHandler, 
                 app.pushRegisterErrorHandler,
