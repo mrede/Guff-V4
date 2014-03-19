@@ -1,16 +1,18 @@
-<div class="modal" ng-controller="ModalCtrl">
+<div id="home" class="modal" ng-controller="ModalCtrl">
   <header class="bar bar-header bar-dark">
     <h1 class="title">New Message</h1>
     <button class="button button-clear button-calm" ng-click="modal.hide()">Cancel</button>
   </header>
   <ion-content has-header="true">
-    <div class="padding">
-      <div class="list">
-        <label class="item item-input">
-          <textarea ng-model="newUser.firstName" placeholder="Message"></textarea>
-        </label>
-        <button class="button button-full button-calm" ng-click="createContact()">Send</button>
-      </div>
+  <form ng-submit="sendMessage(message)">
+    <div class="list">
+      <label class="item item-textarea">
+        <textarea placeholder="Message" ng-model="message.message"></textarea>
+      </label>
     </div>
+    <div class="padding">
+      <button class="button button-full button-calm" ng-click="createContact()">Send</button>
+    </div>
+  </form>
   </ion-content>
 </div>
