@@ -29,6 +29,8 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 })
+
+//This bit is not used at the moment, but might come in handy later - Ben
 .run(function($window, $rootScope) {
       $rootScope.online = navigator.onLine;
       console.log("Default:", $rootScope.online)
