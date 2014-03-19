@@ -8,25 +8,25 @@
 angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
 
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
-  $stateProvider
-
-
-    // the pet tab has its own child nav-view and history
-    .state('home', {
-      url: "/home",
-      templateUrl: "templates/home.html",
-      controller: 'HomeCtrl'
-    });
+  $stateProvider.state('home', {
+    url: "/home",
+    templateUrl: "templates/home.html",
+    controller: 'HomeCtrl'
+  });
 
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/home');
+  // Enable cross domain calls
+  $httpProvider.defaults.useXDomain = true;
+  // Remove the header used to identify ajax call  that would prevent CORS from working
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
 });
 

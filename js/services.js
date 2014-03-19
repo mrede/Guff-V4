@@ -15,10 +15,9 @@ angular.module('starter.services', [])
     all: function(loc) {
 
       var deferred = $q.defer();
-      var endpoint = environment + "/" + loc.lat + "/" + loc.long; //app.token_id
+      var endpoint = environment + loc.lat + "/" + loc.long + "/" + "123"; //app.token_id
 
-      if($window.navigator.network.connection.type != Connection.NONE){
-        
+      //if($window.navigator.network.connection.type != Connection.NONE){
         //needs timeout
         $http({method: 'GET', url: endpoint}).
         success(function(data, status, headers, config) {
@@ -28,12 +27,8 @@ angular.module('starter.services', [])
           deferred.reject(errors[1]);
         });
 
-      } else {
-        deferred.reject(errors[0]);
-      }
-      
+      return deferred.promise; 
     }
-    return deferred.promise;
   }
 }])
 

@@ -66,11 +66,8 @@ angular.module('starter.controllers', [])
 
 .controller('ModalCtrl', function($scope) {
   
-  $scope.newUser = {};
-  
-  $scope.createContact = function() {
-    console.log('Create Contact', $scope.newUser);
-    $scope.modal.hide();
+  $scope.postMessage = function() {
+
   };
   
 });
