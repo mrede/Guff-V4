@@ -178,7 +178,6 @@ angular.module('starter.services', [])
                     );
                 } else {
                     //IOS
-                    alert("Doing IOS");
                     pushNotification.register(
                         app.pushRegisterSuccessIosHandler,
                         app.pushRegisterErrorIosHandler, {
