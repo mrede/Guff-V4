@@ -185,7 +185,7 @@ angular.module('starter.services', [])
                             "badge": "true",
                             "sound": "true",
                             "alert": "true",
-                            "ecb": 'angular.element(document.querySelector("#home")).scope().handleApnPushNotification'
+                            "ecb": 'fail_bounce'
                         });
 
                 }
@@ -300,3 +300,7 @@ angular.module('starter.services', [])
     }
 
 });
+
+function fail_bounce(e) {
+  alert("IOS Fail bounce");
+}
