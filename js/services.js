@@ -1,7 +1,7 @@
 angular.module('starter.services', [])
 
-.factory('MessageService', ['$q', '$window', '$http', '$rootScope',
-    function($q, $window, $http, $rootScope) {
+.factory('MessageService', ['$q', '$window', '$http',
+    function($q, $window, $http) {
         // Might use a resource here that returns a JSON array
 
         // Some fake testing data
@@ -24,7 +24,7 @@ angular.module('starter.services', [])
                 var deferred = $q.defer();
                 var endpoint = environment + loc.lat + "/" + loc.long + "/" + token; //app.token_id
 
-                if ($rootScope.online) {
+                if ($window.navigator.onLine) {
 
                     //needs timeout
                     $http({
