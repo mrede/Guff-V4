@@ -57,7 +57,7 @@ angular.module('starter.services', [])
                         }
                     }).
                     success(function(data, status, headers, config) {
-                        deferred.resolve(data);
+                        deferred.resolve(status);
                     }).
                     error(function(data, status, headers, config) {
                         deferred.reject(errors[2]);

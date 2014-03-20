@@ -38,14 +38,20 @@ angular.module('starter.controllers', [])
     $scope.getMessages = function() {
         MessageService.all($scope.coordinates, $scope.token_id).then(function(data) {
             $scope.messages = data;
-            $scope.modal.hide();
         }, function(error) {
             console.log(error);
         });
     }; // get messages
-    $rootScope.$on("getMessages", function() {
-        $scope.getMessages();
-    }); //
+
+    $rootScope.$on("addMessage", function(event, message) {
+        var message = {
+            d: 0,
+            m: message.message,
+            t: 7200
+        }
+        $scope.messages.unshift(message);
+        $scope.modal.hide();
+    }); // add message to existing list
 
     // send message modal  
     $ionicModal.fromTemplateUrl('templates/modal.html', function(modal) {
@@ -105,8 +111,13 @@ angular.module('starter.controllers', [])
             long: message.longitude
         };
 
+
         MessageService.send(message, $scope.token_id).then(function(data) {
-            $rootScope.$emit("getMessages");
+
+            $scope.sendMessageForm.$setPristine();
+            $scope.message = null;
+            $rootScope.$emit("addMessage", message);
+
         }, function(error) {
             console.log(error);
         });
