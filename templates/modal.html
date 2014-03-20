@@ -4,14 +4,14 @@
     <button class="button button-clear button-calm" ng-click="modal.hide()">Cancel</button>
   </header>
   <ion-content has-header="true">
-  <form ng-submit="sendMessage(message)">
+  <form name="sendMessageForm" ng-controller="ModalCtrl" ng-submit="sendMessage(message)">
     <div class="list">
       <label class="item item-textarea">
-        <textarea placeholder="Message" ng-model="message.message"></textarea>
+        <textarea placeholder="Message" ng-model="message.message" autofocus></textarea>
       </label>
     </div>
     <div class="padding">
-      <button class="button button-full button-calm" ng-click="createContact()">Send</button>
+      <button class="button button-full button-calm">Send</button>
     </div>
   </form>
   </ion-content>
