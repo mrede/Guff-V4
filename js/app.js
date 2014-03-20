@@ -28,5 +28,22 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
   // Remove the header used to identify ajax call  that would prevent CORS from working
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
+})
+.run(function($window, $rootScope) {
+      $rootScope.online = navigator.onLine;
+      console.log("Default:", $rootScope.online)
+      $window.addEventListener("offline", function () {
+        $rootScope.$apply(function() {
+          console.log("OFFLINE");
+          $rootScope.online = false;
+        });
+      }, false);
+      $window.addEventListener("online", function () {
+        $rootScope.$apply(function() {
+          console.log("online");
+          $rootScope.online = true;
+        });
+      }, false);
 });
+
 

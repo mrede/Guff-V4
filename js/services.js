@@ -98,7 +98,7 @@ angular.module('starter.services', [])
                 var deferred = $q.defer();
                 //could pass them in using opts var
                 var options = {
-                    enableHighAccuracy: true,
+                    enableHighAccuracy: false,
                     timeout: 600000, // more than ten minutes old
                     maximumAge: 0
                 };
@@ -178,14 +178,13 @@ angular.module('starter.services', [])
                     );
                 } else {
                     //IOS
-                    alert("Doing IOS");
                     pushNotification.register(
                         app.pushRegisterSuccessIosHandler,
                         app.pushRegisterErrorIosHandler, {
                             "badge": "true",
                             "sound": "true",
                             "alert": "true",
-                            "ecb": 'angular.element(document.querySelector("#home")).scope().handleAPNPushNotification'
+                            "ecb": 'fail_bounce'
                         });
 
                 }
@@ -259,7 +258,7 @@ angular.module('starter.services', [])
             },
 
             pushRegisterSuccessIosHandler: function(result) {
-                //alert('IOS Callback Success! Result = '+result)
+                alert('IOS Callback Success! Result = '+result)
                 app.token_id = result;
                 app.sendRegistration(result, 'ios');
             },
@@ -300,3 +299,7 @@ angular.module('starter.services', [])
     }
 
 });
+
+function fail_bounce(e) {
+  alert("IOS Fail bounce");
+}
