@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 // A simple controller that fetches a list of data from a service
 .controller('HomeCtrl', function($rootScope, $scope, $http, PushService, $ionicModal, $ionicLoading, GetLocationService, MessageService) {
 
-    $scope.token_id = '123'; //default
+    $rootScope.token_id = '123'; //default
 
     $scope.getLoc = function() {
 
@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
 
 
     $scope.getMessages = function() {
-        MessageService.all($scope.coordinates, $scope.token_id).then(function(data) {
+        MessageService.all($scope.coordinates, $rootScope.token_id).then(function(data) {
             $scope.messages = data;
         }, function(error) {
             console.log(error);
@@ -79,8 +79,8 @@ angular.module('starter.controllers', [])
         console.log("GCM Push Notification Received")
 
         PushService.onNotificationGCM($http, e);
-        $scope.token_id = PushService.token_id;
-        console.log("Token ID: ", $scope.token_id);
+        $rootScope.token_id = PushService.token_id;
+        console.log("Token ID: ", $rootScope.token_id);
     }
 
     $scope.handleApnPushNotification = function(e) {
@@ -88,8 +88,8 @@ angular.module('starter.controllers', [])
         console.log("iOS Push Notification Received")
 
         PushService.onNotificationAPN($http, e);
-        $scope.token_id = PushService.token_id;
-        console.log("Token ID: ", $scope.token_id);
+        $rootScope.token_id = PushService.token_id;
+        console.log("Token ID: ", $rootScope.token_id);
     }
 
 
@@ -97,8 +97,6 @@ angular.module('starter.controllers', [])
 
 .controller('ModalCtrl', function($rootScope, $scope, $ionicModal, MessageService, GetLocationService) {
 
-
-    $scope.token_id = '123';
 
     $scope.sendMessage = function(message) {
 
@@ -112,7 +110,7 @@ angular.module('starter.controllers', [])
         };
 
 
-        MessageService.send(message, $scope.token_id).then(function(data) {
+        MessageService.send(message, $rootScope.token_id).then(function(data) {
 
             $scope.sendMessageForm.$setPristine();
             $scope.message = null;
