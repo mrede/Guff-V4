@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
 
         // location service call
         GetLocationService.getLocation().then(function(data) {
-
+            console.log("Got location: ", data);
             $scope.coordinates = {
                 lat: data.coords.latitude,
                 long: data.coords.longitude
@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
             $scope.loading.hide();
 
         }, function(error) {
-            console.log(error);
+            console.log("Error Getting Location: ", error);
         });
 
     };
