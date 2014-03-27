@@ -258,7 +258,8 @@ angular.module('starter.services', [])
             },
 
             pushRegisterSuccessIosHandler: function(result) {
-                alert('IOS Callback Success! Result = '+result)
+                alert('IOS Callback Success! Result = '+result);
+                alert("HTTP?"+app.http)
                 app.token_id = result;
                 app.sendRegistration(result, 'ios');
             },
