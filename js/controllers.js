@@ -79,7 +79,7 @@ angular.module('starter.controllers', [])
         console.log("GCM Push Notification Received")
 
         PushService.onNotificationGCM($http, e);
-        $rootScope.token_id = PushService.token_id;
+
         console.log("Token ID: ", PushService.token_id);
     }
 
@@ -87,9 +87,8 @@ angular.module('starter.controllers', [])
         alert("iOS Push Notification Received");
         console.log("iOS Push Notification Received")
 
-        PushService.onNotificationAPN($http, e);
-        $rootScope.token_id = PushService.token_id;
-        console.log("Token ID: ", $rootScope.token_id);
+        PushService.onNotificationAPN(e);
+
     }
 
 

@@ -186,7 +186,7 @@ angular.module('starter.services', [])
                                 "badge": "true",
                                 "sound": "true",
                                 "alert": "true",
-                                "ecb": 'fail_bounce'
+                                "ecb": 'angular.element(document.querySelector("#home")).scope().handleApnPushNotification'
                             });
 
                     }
@@ -260,8 +260,7 @@ angular.module('starter.services', [])
                 },
 
                 pushRegisterSuccessIosHandler: function(result) {
-                    alert('IOS Callback Success! Result = '+result);
-                    alert("HTTP?"+app.http)
+                    //alert('IOS Callback Success! Result = '+result);
                     app.token_id = result;
                     app.sendRegistration(result, 'ios');
                 },
@@ -270,7 +269,7 @@ angular.module('starter.services', [])
                     alert('IOS Callback Error! Error = ' + error)
                 },
 
-                onNotificationAPN: function($http, event) {
+                onNotificationAPN: function(event) {
                     if (event.alert) {
                         alert(event.alert);
                         navigator.notification.alert(event.alert);
