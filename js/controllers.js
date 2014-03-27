@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
 
 
     $scope.getMessages = function() {
-        MessageService.all($scope.coordinates, $rootScope.token_id).then(function(data) {
+        MessageService.all($scope.coordinates, PushService.token_id).then(function(data) {
             $scope.messages = data;
         }, function(error) {
             console.log(error);
@@ -80,7 +80,7 @@ angular.module('starter.controllers', [])
 
         PushService.onNotificationGCM($http, e);
         $rootScope.token_id = PushService.token_id;
-        console.log("Token ID: ", $rootScope.token_id);
+        console.log("Token ID: ", PushService.token_id);
     }
 
     $scope.handleApnPushNotification = function(e) {
@@ -95,7 +95,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ModalCtrl', function($rootScope, $scope, $ionicModal, MessageService, GetLocationService) {
+.controller('ModalCtrl', function($rootScope, $scope, $ionicModal, MessageService, GetLocationService, PushService) {
 
 
     $scope.sendMessage = function(message) {
@@ -110,7 +110,7 @@ angular.module('starter.controllers', [])
         };
 
 
-        MessageService.send(message, $rootScope.token_id).then(function(data) {
+        MessageService.send(message, PushService.token_id).then(function(data) {
 
             $scope.sendMessageForm.$setPristine();
             $scope.message = null;
