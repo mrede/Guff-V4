@@ -75,19 +75,23 @@ angular.module('starter.controllers', [])
     }
 
     $scope.handleGcmPushNotification = function(e) {
-        alert("GCM Push Notification Received");
+        //alert("GCM Push Notification Received");
         console.log("GCM Push Notification Received")
 
         PushService.onNotificationGCM($http, e);
+
+        $scope.getMessages();
 
         console.log("Token ID: ", PushService.token_id);
     }
 
     $scope.handleApnPushNotification = function(e) {
-        alert("iOS Push Notification Received");
+        //alert("iOS Push Notification Received");
         console.log("iOS Push Notification Received")
 
         PushService.onNotificationAPN(e);
+
+        $scope.getMessages();
 
     }
 
