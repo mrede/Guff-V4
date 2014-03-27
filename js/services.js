@@ -148,158 +148,161 @@ angular.module('starter.services', [])
 /**
  * A simple example service that returns some data.
  */
-.factory('PushService', function() {
-
-    var pushNotification = false;
-    console.log("window.plugins: " + window.plugins)
-    if (window.plugins) {
-        pushNotification = window.plugins.pushNotification;
-    }
-
-    if (pushNotification) {
+.factory('PushService', ['$http', 
+    function($http) {
 
 
-        var app = {
-            token_id: null,
-            http: null,
+        var pushNotification = false;
+        console.log("window.plugins: " + window.plugins)
+        if (window.plugins) {
+            pushNotification = window.plugins.pushNotification;
+        }
 
-            // Update DOM on a Received Event
-            register: function(id) {
-
-                var pushNotification = window.plugins.pushNotification;
-
-                if (device.platform == 'android' || device.platform == 'Android') {
-                    pushNotification.register(
-                        app.pushRegisterSuccessHandler,
-                        app.pushRegisterErrorHandler, {
-                            "senderID": "507474617924",
-                            "ecb": 'angular.element(document.querySelector("#home")).scope().handleGcmPushNotification'
-                        }
-                    );
-                } else {
-                    //IOS
-                    pushNotification.register(
-                        app.pushRegisterSuccessIosHandler,
-                        app.pushRegisterErrorIosHandler, {
-                            "badge": "true",
-                            "sound": "true",
-                            "alert": "true",
-                            "ecb": 'fail_bounce'
-                        });
-
-                }
-            },
-
-            pushRegisterSuccessHandler: function(result) {
-                //alert('Callback Success! Result = '+result)
-            },
-
-            pushRegisterErrorHandler: function(error) {
-                alert('Error = ' + error)
-            },
-
-            onNotificationGCM: function($http, e) {
-                this.http = $http;
-                console.log("GCM", e, this.http);
-                switch (e.event) {
-                    case 'registered':
-                        if (e.regid.length > 0) {
-                            console.log("Regid " + e.regid);
+        if (pushNotification) {
 
 
-                            //alert('registration id = '+e.regid);
-                            app.token_id = e.regid;
-                            app.sendRegistration(e.regid, 'android')
-                        }
-                        break;
+            var app = {
+                token_id: null,
+                http: $http,
 
-                    case 'message':
-                        // this is the actual push notification. its format depends on the data model from the push server
-                        alert('message = ' + e.message + ' msgcnt = ' + e.msgcnt);
-                        break;
+                // Update DOM on a Received Event
+                register: function(id) {
 
-                    case 'error':
-                        alert('GCM error = ' + e.msg);
-                        break;
+                    var pushNotification = window.plugins.pushNotification;
 
-                    default:
-                        alert('An unknown GCM event has occurred');
-                        break;
-                }
-            },
+                    if (device.platform == 'android' || device.platform == 'Android') {
+                        pushNotification.register(
+                            app.pushRegisterSuccessHandler,
+                            app.pushRegisterErrorHandler, {
+                                "senderID": "507474617924",
+                                "ecb": 'angular.element(document.querySelector("#home")).scope().handleGcmPushNotification'
+                            }
+                        );
+                    } else {
+                        //IOS
+                        pushNotification.register(
+                            app.pushRegisterSuccessIosHandler,
+                            app.pushRegisterErrorIosHandler, {
+                                "badge": "true",
+                                "sound": "true",
+                                "alert": "true",
+                                "ecb": 'fail_bounce'
+                            });
 
-            sendRegistration: function(id, platform) {
+                    }
+                },
 
-                app.http({
-                    method: 'GET',
-                    url: 'http://dev.guff.me.uk/register/' + platform + '.json?token=' + id,
-                }).
-                success(function(data, status, headers, config) {
+                pushRegisterSuccessHandler: function(result) {
+                    //alert('Callback Success! Result = '+result)
+                },
+
+                pushRegisterErrorHandler: function(error) {
+                    alert('Error = ' + error)
+                },
+
+                onNotificationGCM: function($http, e) {
+                    this.http = $http;
+                    console.log("GCM", e, this.http);
+                    switch (e.event) {
+                        case 'registered':
+                            if (e.regid.length > 0) {
+                                console.log("Regid " + e.regid);
+
+
+                                //alert('registration id = '+e.regid);
+                                app.token_id = e.regid;
+                                app.sendRegistration(e.regid, 'android')
+                            }
+                            break;
+
+                        case 'message':
+                            // this is the actual push notification. its format depends on the data model from the push server
+                            alert('message = ' + e.message + ' msgcnt = ' + e.msgcnt);
+                            break;
+
+                        case 'error':
+                            alert('GCM error = ' + e.msg);
+                            break;
+
+                        default:
+                            alert('An unknown GCM event has occurred');
+                            break;
+                    }
+                },
+
+                sendRegistration: function(id, platform) {
+
+                    app.http({
+                        method: 'GET',
+                        url: 'http://dev.guff.me.uk/register/' + platform + '.json?token=' + id,
+                    }).
+                    success(function(data, status, headers, config) {
+                        console.log("REgister success");
+                    }).
+                    error(function(data, status, headers, config) {
+                        console.log("ERROR registering")
+                    });
+
+                    //alert("Sending reg to"+'http://dev.guff.me.uk/register/'+platform+'.json?token='+id);
+                    // $.ajax({
+                    //   type: 'get',
+                    //   url: 'http://dev.guff.me.uk/register/'+platform+'.json?token='+id,
+                    //   dataType: 'json',
+                    //   timeout: 8000,
+
+                    //   success: app.registerSuccessHandler,
+                    //   error: function(xhr, type){ alert("Error sending Reg"+xhr+", "+type)}
+                    // });
+                },
+
+                registerSuccessHandler: function(e) {
                     console.log("REgister success");
-                }).
-                error(function(data, status, headers, config) {
-                    console.log("ERROR registering")
-                });
+                },
 
-                //alert("Sending reg to"+'http://dev.guff.me.uk/register/'+platform+'.json?token='+id);
-                // $.ajax({
-                //   type: 'get',
-                //   url: 'http://dev.guff.me.uk/register/'+platform+'.json?token='+id,
-                //   dataType: 'json',
-                //   timeout: 8000,
+                pushRegisterSuccessIosHandler: function(result) {
+                    alert('IOS Callback Success! Result = '+result);
+                    alert("HTTP?"+app.http)
+                    app.token_id = result;
+                    app.sendRegistration(result, 'ios');
+                },
 
-                //   success: app.registerSuccessHandler,
-                //   error: function(xhr, type){ alert("Error sending Reg"+xhr+", "+type)}
-                // });
-            },
+                pushRegisterErrorIosHandler: function(error) {
+                    alert('IOS Callback Error! Error = ' + error)
+                },
 
-            registerSuccessHandler: function(e) {
-                console.log("REgister success");
-            },
+                onNotificationAPN: function($http, event) {
+                    if (event.alert) {
+                        alert(event.alert);
+                        navigator.notification.alert(event.alert);
+                    }
 
-            pushRegisterSuccessIosHandler: function(result) {
-                alert('IOS Callback Success! Result = '+result);
-                alert("HTTP?"+app.http)
-                app.token_id = result;
-                app.sendRegistration(result, 'ios');
-            },
+                    if (event.sound) {
+                        var snd = new Media(event.sound);
+                        snd.play();
+                    }
 
-            pushRegisterErrorIosHandler: function(error) {
-                alert('IOS Callback Error! Error = ' + error)
-            },
-
-            onNotificationAPN: function($http, event) {
-                if (event.alert) {
-                    alert(event.alert);
-                    navigator.notification.alert(event.alert);
+                    if (event.badge) {
+                        pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
+                    }
                 }
 
-                if (event.sound) {
-                    var snd = new Media(event.sound);
-                    snd.play();
-                }
+            };
 
-                if (event.badge) {
-                    pushNotification.setApplicationIconBadgeNumber(successHandler, errorHandler, event.badge);
-                }
-            }
+            return app;
+        } else {
+            return {
+                register: function() {
+                    console.log("DUMMY")
+                },
+                sendRegistration: function(id, platform) {
 
-        };
+                },
 
-        return app;
-    } else {
-        return {
-            register: function() {
-                console.log("DUMMY")
-            },
-            sendRegistration: function(id, platform) {
+            };
+        }
 
-            },
-
-        };
     }
-
-});
+]);
 
 function fail_bounce(e) {
   alert("IOS Fail bounce");
