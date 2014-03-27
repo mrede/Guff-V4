@@ -93,6 +93,8 @@ angular.module('starter.controllers', [])
 
         $scope.getMessages();
 
+        console.log("FINISHED: iOS Push Notification Received")
+
     }
 
 

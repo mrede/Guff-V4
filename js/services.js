@@ -270,6 +270,7 @@ angular.module('starter.services', [])
                 },
 
                 onNotificationAPN: function(event) {
+                    console.log("onNotificationAPN", event);
                     if (event.alert) {
                         //alert(event.alert);
                         navigator.notification.alert(event.alert);
