@@ -277,8 +277,10 @@ angular.module('starter.services', [])
                     }
 
                     if (event.sound) {
+                        console.log("Sound");
                         var snd = new Media(event.sound);
                         snd.play();
+                        console.log("Sound end")
                     }
 
                     if (event.badge) {

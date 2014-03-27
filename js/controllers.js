@@ -89,9 +89,10 @@ angular.module('starter.controllers', [])
         //alert("iOS Push Notification Received");
         console.log("iOS Push Notification Received")
 
+        $scope.getMessages();
         PushService.onNotificationAPN(e);
 
-        $scope.getMessages();
+        
 
         console.log("FINISHED: iOS Push Notification Received")
 
