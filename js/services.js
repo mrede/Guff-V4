@@ -273,7 +273,7 @@ angular.module('starter.services', [])
                     console.log("onNotificationAPN", event);
                     if (event.alert) {
                         //alert(event.alert);
-                        navigator.notification.alert(event.alert);
+                        
                     }
 
                     if (event.sound) {
