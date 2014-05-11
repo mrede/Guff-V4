@@ -2,3 +2,7 @@
 .loading-backdrop.enabled {
 	background-color: rgba(67, 206, 230, 0.7);
 }
+
+.item-content, label span {
+	font-size: 12px;
+}

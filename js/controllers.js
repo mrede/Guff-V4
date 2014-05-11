@@ -136,6 +136,7 @@ angular.module('starter.controllers', [])
             MessageService.send(message, PushService.token_id).then(function(data) {
 
                 $scope.sendMessageForm.$setPristine();
+                $scope.charLeft = 141;
                 $scope.message = null;
                 $rootScope.$emit("addMessage", message);
 
