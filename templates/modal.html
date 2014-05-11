@@ -7,11 +7,12 @@
   <form name="sendMessageForm" ng-controller="ModalCtrl" ng-submit="sendMessage(message)">
     <div class="list">
       <label class="item item-textarea">
-        <textarea placeholder="Message" ng-model="message.message" autofocus></textarea>
+        <textarea placeholder="Message" name="message" ng-model="message.message" ng-trim="false" ng-change="messageWatcher()" autofocus></textarea>
+        {{charLeft}}
       </label>
     </div>
     <div class="padding">
-      <button class="button button-full button-calm">Send</button>
+      <button id="send" class="button button-full button-calm disabled">Send</button>
     </div>
   </form>
   </ion-content>

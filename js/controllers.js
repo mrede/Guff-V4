@@ -103,6 +103,22 @@ angular.module('starter.controllers', [])
 
 .controller('ModalCtrl', function($rootScope, $scope, $ionicModal, MessageService, GetLocationService, PushService) {
 
+    $scope.messageWatcher = function() {
+
+        $scope.charLeft = 141-sendMessageForm.message.value.length;
+
+        if(sendMessageForm.message.value.length<=0 || $scope.charLeft < 0) {
+            document.getElementById("send").classList.add("disabled");
+        } else {
+            document.getElementById("send").classList.remove("disabled");
+        }
+
+        if ($scope.charLeft < 0) {
+            sendMessageForm.message.style.color = 'red';
+        } else {
+            sendMessageForm.message.style.color = '#444';
+        }
+    };
 
     $scope.sendMessage = function(message) {
 
@@ -115,16 +131,19 @@ angular.module('starter.controllers', [])
             long: message.longitude
         };
 
+        if ($scope.sendMessageForm.$valid) {
+            
+            MessageService.send(message, PushService.token_id).then(function(data) {
 
-        MessageService.send(message, PushService.token_id).then(function(data) {
+                $scope.sendMessageForm.$setPristine();
+                $scope.message = null;
+                $rootScope.$emit("addMessage", message);
 
-            $scope.sendMessageForm.$setPristine();
-            $scope.message = null;
-            $rootScope.$emit("addMessage", message);
+            }, function(error) {
+                console.log(error);
+            });
 
-        }, function(error) {
-            console.log(error);
-        });
+        }
     };
 
 });
