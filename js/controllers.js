@@ -37,6 +37,15 @@ angular.module('starter.controllers', [])
 
     $scope.getMessages = function() {
         MessageService.all($scope.coordinates, PushService.token_id).then(function(data) {
+            data.map( function(i) { 
+                
+                 when_ago = 7200 - i.t;
+             
+                 i.t = Math.round(when_ago/60) + " min";
+
+
+
+            } );
             $scope.messages = data;
         }, function(error) {
             console.log(error);
