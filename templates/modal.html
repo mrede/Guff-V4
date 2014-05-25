@@ -7,7 +7,7 @@
   <form name="sendMessageForm" ng-controller="ModalCtrl" ng-submit="sendMessage(message)">
     <div class="list">
       <label class="item item-textarea">
-        <textarea placeholder="Message" name="message" ng-model="message.message" ng-trim="false" ng-change="messageWatcher()" autofocus></textarea>
+        <textarea placeholder="Message" name="message" ng-model="message.message" ng-trim="false" ng-change="messageWatcher()"></textarea>
         <span>{{charLeft}}</span>
       </label>
     </div>

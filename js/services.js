@@ -99,11 +99,12 @@ angular.module('starter.services', [])
                 //could pass them in using opts var
                 var options = {
                     enableHighAccuracy: false,
-                    timeout: 600000, // more than ten minutes old
+                    timeout: 30000, // more than ten minutes old
                     maximumAge: 0
                 };
 
                 if ($window.navigator && $window.navigator.geolocation) {
+                    console.log('has capability');
                     $window.navigator.geolocation.getCurrentPosition(function(position) {
                         geo = position;
                         deferred.resolve(position);

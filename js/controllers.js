@@ -37,15 +37,10 @@ angular.module('starter.controllers', [])
 
     $scope.getMessages = function() {
         MessageService.all($scope.coordinates, PushService.token_id).then(function(data) {
-            data.map( function(i) { 
-                
+            data.map(function(i) { 
                  when_ago = 7200 - i.t;
-             
                  i.t = Math.round(when_ago/60) + " min";
-
-
-
-            } );
+            });
             $scope.messages = data;
         }, function(error) {
             console.log(error);
@@ -56,7 +51,7 @@ angular.module('starter.controllers', [])
         var message = {
             d: 0,
             m: message.message,
-            t: 7200
+            t: '0 min'
         }
         $scope.messages.unshift(message);
         $scope.modal.hide();
@@ -147,6 +142,7 @@ angular.module('starter.controllers', [])
                 $scope.sendMessageForm.$setPristine();
                 $scope.charLeft = 141;
                 $scope.message = null;
+
                 $rootScope.$emit("addMessage", message);
 
             }, function(error) {
