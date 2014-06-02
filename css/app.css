@@ -1,9 +1,84 @@
 /* Your app's CSS, go crazy, make it your own */
-.loading-backdrop.enabled {
-	background-color: rgba(67, 206, 230, 0.7);
+
+.backdrop {
+	background-color: rgba(204, 204, 204, 0.7);
 }
 
-.item-note {
+textarea {
+	min-height: 30vh;
+}
+
+svg {
+  height: 100px;
+  overflow: visible;
+}
+
+.loading {
+	background: none;
+}
+
+form span {
+	float: right;
+	margin-top: -20px;
+	padding: 10px;
+}
+
+#icon-explore .needle {
+  -webkit-transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-transform-origin: center;
+  -moz-transform-origin: center;
+  -ms-transform-origin: center;
+  -o-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -o-transform: rotate(0);
+  transform: rotate(0);
+}
+#icon-explore .circle-1 {
+  -webkit-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transform-origin: center;
+  -moz-transform-origin: center;
+  -ms-transform-origin: center;
+  -o-transform-origin: center;
+  transform-origin: center;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  stroke: white;
+  stroke-width: 0;
+  stroke-opacity: 0.1;
+}
+
+#icon-explore.on .needle {
+  -webkit-transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+#icon-explore.on .circle-1 {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  stroke-width: 50%;
+  stroke-opacity: 0;
+}
+
+
+/*.item-note {
 	position: relative;
 	right: -25px;
-}
+}*/

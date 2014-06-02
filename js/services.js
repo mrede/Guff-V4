@@ -78,16 +78,16 @@ angular.module('starter.services', [])
 
         var errors = [{
             id: 0,
-            message: "Phone does not support location services"
+            message: "Sorry looks like your phone doesn't support location tracking" // unsupported device
         }, {
             id: 1,
-            message: "You have rejected access to your location"
+            message: "Did you give us permission to track your location?" // rejected permission to track
         }, {
             id: 2,
-            message: "Unable to determine your location"
+            message: "Have you got location tracking enabled on your phone?" // tracking not enabled on device
         }, {
             id: 3,
-            message: "Service timeout has been reached"
+            message: "We are having trouble getting your location" // timeout getting location
         }];
 
         var geo;
@@ -104,7 +104,6 @@ angular.module('starter.services', [])
                 };
 
                 if ($window.navigator && $window.navigator.geolocation) {
-                    console.log('has capability');
                     $window.navigator.geolocation.getCurrentPosition(function(position) {
                         geo = position;
                         deferred.resolve(position);

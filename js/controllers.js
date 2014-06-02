@@ -1,20 +1,27 @@
 angular.module('starter.controllers', [])
 
 // A simple controller that fetches a list of data from a service
-.controller('HomeCtrl', function($rootScope, $scope, $http, PushService, $ionicModal, $ionicLoading, GetLocationService, MessageService) {
-
+.controller('HomeCtrl', function($rootScope, $scope, $http, PushService, $ionicModal, $ionicLoading, $ionicPopup, GetLocationService, MessageService) {
     $rootScope.token_id = '123'; //default
 
     $scope.getLoc = function() {
 
         // show loading screen
-        $scope.loading = $ionicLoading.show({
-            content: 'Checking in',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 250
-        });
+        if($scope.classes != "shown") {
+            $scope.loading = $ionicLoading.show({
+                templateUrl: 'templates/modals/checkin.html',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 250
+            });
+        }
+        $scope.classes = "shown"; // TBD: this might need to be hooked into the phone gap onload
+
+
+        var compassInterval = setInterval(function(){
+            document.getElementById("icon-explore").classList.toggle("on");
+        }, 1000);
 
         // location service call
         GetLocationService.getLocation().then(function(data) {
@@ -24,10 +31,25 @@ angular.module('starter.controllers', [])
                 long: data.coords.longitude
             };
             $scope.getMessages();
-            $scope.loading.hide();
+            clearInterval(compassInterval);
+            $ionicLoading.hide();
 
         }, function(error) {
-            console.log("Error Getting Location: ", error);
+
+            var alertPopup = $ionicPopup.alert({
+              title: 'Problem getting your location',
+              template: error.message,
+              buttons: [{
+                text: 'Retry',
+                type: 'button-calm',
+                onTap: function(e) {
+                  // try again
+                  $scope.getLoc();
+                }
+              }]
+            });
+
+            $ionicLoading.hide();
         });
 
     };
@@ -38,12 +60,31 @@ angular.module('starter.controllers', [])
     $scope.getMessages = function() {
         MessageService.all($scope.coordinates, PushService.token_id).then(function(data) {
             data.map(function(i) { 
+
                  when_ago = 7200 - i.t;
-                 i.t = Math.round(when_ago/60) + " min";
+                 minutes = Math.round(when_ago/60);
+                 if(minutes<=0) {
+                   i.t = "Just now";
+                 } else {
+                   i.t = minutes + " min";
+                 }
+                 
             });
             $scope.messages = data;
+            $scope.$broadcast('scroll.refreshComplete');
         }, function(error) {
+
+            $scope.showAlert = function() {
+                var alertPopup = $ionicPopup.alert({
+                  title: 'Don\'t eat that!',
+                  template: 'It might taste good'
+                });
+                alertPopup.then(function(res) {
+                  console.log('Thank you for not eating my delicious ice cream cone');
+                });
+            };
             console.log(error);
+
         });
     }; // get messages
 
@@ -51,7 +92,7 @@ angular.module('starter.controllers', [])
         var message = {
             d: 0,
             m: message.message,
-            t: '0 min'
+            t: 'Just now'
         }
         $scope.messages.unshift(message);
         $scope.modal.hide();
@@ -137,11 +178,15 @@ angular.module('starter.controllers', [])
 
         if ($scope.sendMessageForm.$valid) {
             
+            document.getElementById("send").classList.add("disabled");
+
             MessageService.send(message, PushService.token_id).then(function(data) {
 
                 $scope.sendMessageForm.$setPristine();
                 $scope.charLeft = 141;
                 $scope.message = null;
+
+                document.getElementById("send").classList.remove("disabled");
 
                 $rootScope.$emit("addMessage", message);
 
