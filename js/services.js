@@ -22,6 +22,7 @@ angular.module('starter.services', [])
             all: function(loc, token) {
 
                 var deferred = $q.defer();
+                console.log("Function:", loc, token);
                 var endpoint = environment + loc.lat + "/" + loc.long + "/" + token; //app.token_id
 
                 if ($window.navigator.onLine) {
