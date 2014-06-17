@@ -23,6 +23,10 @@ form span {
 	padding: 10px;
 }
 
+.item-note {
+  white-space: nowrap !important;
+}
+
 #icon-explore .needle {
   -webkit-transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
   -moz-transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
@@ -76,9 +80,3 @@ form span {
   stroke-width: 50%;
   stroke-opacity: 0;
 }
-
-
-/*.item-note {
-	position: relative;
-	right: -25px;
-}*/
