@@ -119,7 +119,7 @@ angular.module('starter.controllers', [])
         PushService.register();
     }
 
-    $scope.handleGcmPushNotification = function(e) {
+    $rootScope.handleGcmPushNotification = function(e) {
         //alert("GCM Push Notification Received");
         console.log("GCM Push Notification Received")
 
@@ -130,7 +130,7 @@ angular.module('starter.controllers', [])
         console.log("Token ID: ", PushService.token_id);
     }
 
-    $scope.handleApnPushNotification = function(e) {
+    $rootScope.handleApnPushNotification = function(e) {
         //alert("iOS Push Notification Received");
         console.log("iOS Push Notification Received")
 
