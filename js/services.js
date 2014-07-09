@@ -172,22 +172,24 @@ angular.module('starter.services', [])
                     var pushNotification = window.plugins.pushNotification;
 
                     if (device.platform == 'android' || device.platform == 'Android') {
+                        console.log("Registering Android")
                         pushNotification.register(
                             app.pushRegisterSuccessHandler,
                             app.pushRegisterErrorHandler, {
                                 "senderID": "507474617924",
-                                "ecb": 'angular.element(document.querySelector("#home")).scope().handleGcmPushNotification'
+                                "ecb": 'angular.element(document.querySelector("body")).scope().handleGcmPushNotification'
                             }
                         );
                     } else {
                         //IOS
+                        console.log("Registering IOS")
                         pushNotification.register(
                             app.pushRegisterSuccessIosHandler,
                             app.pushRegisterErrorIosHandler, {
                                 "badge": "true",
                                 "sound": "true",
                                 "alert": "true",
-                                "ecb": 'angular.element(document.querySelector("#home")).scope().handleApnPushNotification'
+                                "ecb": 'angular.element(document.querySelector("body")).scope().handleApnPushNotification'
                             });
 
                     }
@@ -195,6 +197,7 @@ angular.module('starter.services', [])
 
                 pushRegisterSuccessHandler: function(result) {
                     //alert('Callback Success! Result = '+result)
+                    console.log("Android Registered OK", result)
                 },
 
                 pushRegisterErrorHandler: function(error) {

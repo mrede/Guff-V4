@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 // A simple controller that fetches a list of data from a service
 .controller('HomeCtrl', function($rootScope, $scope, $http, PushService, $ionicModal, $ionicLoading, $ionicPopup, GetLocationService, MessageService) {
-    $rootScope.token_id = '123'; //default
+    $rootScope.token_id = '1234'; //default
 
     $scope.getLoc = function() {
 
@@ -119,7 +119,7 @@ angular.module('starter.controllers', [])
         PushService.register();
     }
 
-    $scope.handleGcmPushNotification = function(e) {
+    $rootScope.handleGcmPushNotification = function(e) {
         //alert("GCM Push Notification Received");
         console.log("GCM Push Notification Received")
 
@@ -130,7 +130,7 @@ angular.module('starter.controllers', [])
         console.log("Token ID: ", PushService.token_id);
     }
 
-    $scope.handleApnPushNotification = function(e) {
+    $rootScope.handleApnPushNotification = function(e) {
         //alert("iOS Push Notification Received");
         console.log("iOS Push Notification Received")
 
