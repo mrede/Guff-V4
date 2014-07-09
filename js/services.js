@@ -158,7 +158,7 @@ angular.module('starter.services', [])
         if (window.plugins) {
             pushNotification = window.plugins.pushNotification;
         }
-        console.log("Push Notification status:", push)
+        
         if (pushNotification) {
 
 
