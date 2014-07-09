@@ -172,6 +172,7 @@ angular.module('starter.services', [])
                     var pushNotification = window.plugins.pushNotification;
 
                     if (device.platform == 'android' || device.platform == 'Android') {
+                        console.log("Registering Android")
                         pushNotification.register(
                             app.pushRegisterSuccessHandler,
                             app.pushRegisterErrorHandler, {
@@ -181,6 +182,7 @@ angular.module('starter.services', [])
                         );
                     } else {
                         //IOS
+                        console.log("Registering IOS")
                         pushNotification.register(
                             app.pushRegisterSuccessIosHandler,
                             app.pushRegisterErrorIosHandler, {
@@ -195,6 +197,7 @@ angular.module('starter.services', [])
 
                 pushRegisterSuccessHandler: function(result) {
                     //alert('Callback Success! Result = '+result)
+                    console.log("Android Registered OK", result)
                 },
 
                 pushRegisterErrorHandler: function(error) {
