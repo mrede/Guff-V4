@@ -25,7 +25,7 @@ angular.module('starter.controllers', [])
 
         // location service call
         GetLocationService.getLocation().then(function(data) {
-            console.log("Got location: ", data);
+            trackJs.console.log("Got location: ", data);
             $scope.coordinates = {
                 lat: data.coords.latitude,
                 long: data.coords.longitude
@@ -80,10 +80,10 @@ angular.module('starter.controllers', [])
                   template: 'It might taste good'
                 });
                 alertPopup.then(function(res) {
-                  console.log('Thank you for not eating my delicious ice cream cone');
+                  trackJs.console.log('Thank you for not eating my delicious ice cream cone');
                 });
             };
-            console.log(error);
+            trackJs.console.log(error);
 
         });
     }; // get messages
@@ -110,36 +110,39 @@ angular.module('starter.controllers', [])
     var storage = window.localStorage;
     var push_token = false;
 
+    trackJs.console.log('ABout to try pushing')
+    trackJs.console.log('Test', storage)
+
     if (!storage) {
         push_token = storage.getItem('push_token');
     }
 
     if (!push_token) {
-        console.log("Calling register")
+        trackJs.console.log("Calling register")
         PushService.register();
     }
 
     $rootScope.handleGcmPushNotification = function(e) {
         //alert("GCM Push Notification Received");
-        console.log("GCM Push Notification Received")
+        trackJs.console.log("GCM Push Notification Received")
 
         PushService.onNotificationGCM($http, e);
 
         $scope.getMessages();
 
-        console.log("Token ID: ", PushService.token_id);
+        trackJs.console.log("Token ID: ", PushService.token_id);
     }
 
     $rootScope.handleApnPushNotification = function(e) {
         //alert("iOS Push Notification Received");
-        console.log("iOS Push Notification Received")
+        trackJs.console.log("iOS Push Notification Received")
 
         $scope.getMessages();
         PushService.onNotificationAPN(e);
 
         
 
-        console.log("FINISHED: iOS Push Notification Received")
+        trackJs.console.log("FINISHED: iOS Push Notification Received")
 
     }
 
@@ -191,7 +194,7 @@ angular.module('starter.controllers', [])
                 $rootScope.$emit("addMessage", message);
 
             }, function(error) {
-                console.log(error);
+                trackJs.console.log(error);
             });
 
         }

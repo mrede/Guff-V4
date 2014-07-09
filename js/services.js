@@ -22,7 +22,7 @@ angular.module('starter.services', [])
             all: function(loc, token) {
 
                 var deferred = $q.defer();
-                console.log("Function:", loc, token);
+                trackJs.console.log("Function:", loc, token);
                 var endpoint = environment + loc.lat + "/" + loc.long + "/" + token; //app.token_id
 
                 if ($window.navigator.onLine) {
@@ -154,11 +154,11 @@ angular.module('starter.services', [])
 
 
         var pushNotification = false;
-        console.log("window.plugins: " + window.plugins)
+        
         if (window.plugins) {
             pushNotification = window.plugins.pushNotification;
         }
-
+        trackJs.console.log("Push Notification status:", pushNotification)
         if (pushNotification) {
 
 
@@ -172,7 +172,7 @@ angular.module('starter.services', [])
                     var pushNotification = window.plugins.pushNotification;
 
                     if (device.platform == 'android' || device.platform == 'Android') {
-                        console.log("Registering Android")
+                        trackJs.console.log("Registering Android")
                         pushNotification.register(
                             app.pushRegisterSuccessHandler,
                             app.pushRegisterErrorHandler, {
@@ -182,7 +182,7 @@ angular.module('starter.services', [])
                         );
                     } else {
                         //IOS
-                        console.log("Registering IOS")
+                        trackJs.console.log("Registering IOS")
                         pushNotification.register(
                             app.pushRegisterSuccessIosHandler,
                             app.pushRegisterErrorIosHandler, {
@@ -197,7 +197,7 @@ angular.module('starter.services', [])
 
                 pushRegisterSuccessHandler: function(result) {
                     //alert('Callback Success! Result = '+result)
-                    console.log("Android Registered OK", result)
+                    trackJs.console.log("Android Registered OK", result)
                 },
 
                 pushRegisterErrorHandler: function(error) {
@@ -206,11 +206,11 @@ angular.module('starter.services', [])
 
                 onNotificationGCM: function($http, e) {
                     this.http = $http;
-                    console.log("GCM", e, this.http);
+                    trackJs.console.log("GCM", e, this.http);
                     switch (e.event) {
                         case 'registered':
                             if (e.regid.length > 0) {
-                                console.log("Regid " + e.regid);
+                                trackJs.console.log("Regid " + e.regid);
 
 
                                 //alert('registration id = '+e.regid);
@@ -241,10 +241,10 @@ angular.module('starter.services', [])
                         url: 'http://dev.guff.me.uk/register/' + platform + '.json?token=' + id,
                     }).
                     success(function(data, status, headers, config) {
-                        console.log("REgister success");
+                        trackJs.console.log("REgister success");
                     }).
                     error(function(data, status, headers, config) {
-                        console.log("ERROR registering")
+                        trackJs.console.log("ERROR registering")
                     });
 
                     //alert("Sending reg to"+'http://dev.guff.me.uk/register/'+platform+'.json?token='+id);
@@ -260,7 +260,7 @@ angular.module('starter.services', [])
                 },
 
                 registerSuccessHandler: function(e) {
-                    console.log("REgister success");
+                    trackJs.console.log("REgister success");
                 },
 
                 pushRegisterSuccessIosHandler: function(result) {
@@ -274,17 +274,17 @@ angular.module('starter.services', [])
                 },
 
                 onNotificationAPN: function(event) {
-                    console.log("onNotificationAPN", event);
+                    trackJs.console.log("onNotificationAPN", event);
                     if (event.alert) {
                         //alert(event.alert);
                         
                     }
 
                     if (event.sound) {
-                        console.log("Sound");
+                        trackJs.console.log("Sound");
                         //var snd = new Media(event.sound);
                         //snd.play();
-                        console.log("Sound end")
+                        trackJs.console.log("Sound end")
                     }
 
                     if (event.badge) {
@@ -298,7 +298,7 @@ angular.module('starter.services', [])
         } else {
             return {
                 register: function() {
-                    console.log("DUMMY")
+                    trackJs.console.log("DUMMY")
                 },
                 sendRegistration: function(id, platform) {
 
