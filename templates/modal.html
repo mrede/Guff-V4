@@ -1,21 +1,24 @@
 <div id="home" class="modal" ng-controller="ModalCtrl">
 <ion-header-bar class="bar-dark">
   <h1 class="title">New Message</h1>
-  <div class="buttons">
-    <button class="button button-clear button-calm" ng-click="modal.hide()">Cancel</button>
+  <div class="buttons left">
+    <button class="button button-icon icon ion-close" ng-click="modal.hide()"></button>
   </div>
-  {{charLeft}}
+  <div class="buttons right">
+    <button id="send" class="button button-icon icon disabled" ng-controller="ModalCtrl" ng-click="sendMessage(message)"><span>{{charLeft}}</span> Send </button>
+  </div>
 </ion-header-bar>
 
-  <ion-content has-header="true">
-    <form name="sendMessageForm" ng-controller="ModalCtrl" ng-submit="sendMessage(message)">
+<!-- ng-submit="sendMessage(message)" -->
+
+  <div class="content has-header">
+    <form name="sendMessageForm">
     <ul class="list">
       <li class="item item-input">
         <textarea placeholder="Message" name="message" ng-model="message.message" ng-trim="false" ng-change="messageWatcher()"></textarea>
       </li>
     </ul>
-    <span>{{charLeft}}</span>
-    <div class="padding"><button type="submit" id="send" class="button button-block button-calm disabled">Send</button></div>
     </form>
-  </ion-content>
+  </div>
+  
 </div>
