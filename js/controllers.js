@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
 // A simple controller that fetches a list of data from a service
 .controller('HomeCtrl', function($rootScope, $scope, $http, PushService, $ionicModal, $ionicLoading, $ionicPopup, GetLocationService, MessageService) {
-    $rootScope.token_id = '1234'; //default
+    $rootScope.token_id = '12345'; //default
 
     $scope.getLoc = function() {
 

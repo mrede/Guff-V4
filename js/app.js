@@ -48,5 +48,3 @@ var theApp = angular.module('starter', ['ionic', 'starter.services', 'starter.co
       }, false);
 });
 
-console.log("SATARTED")
-

@@ -154,11 +154,11 @@ angular.module('starter.services', [])
 
 
         var pushNotification = false;
-        console.log("window.plugins: " + window.plugins)
+        
         if (window.plugins) {
             pushNotification = window.plugins.pushNotification;
         }
-
+        
         if (pushNotification) {
 
 
