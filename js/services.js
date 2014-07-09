@@ -177,7 +177,7 @@ angular.module('starter.services', [])
                             app.pushRegisterSuccessHandler,
                             app.pushRegisterErrorHandler, {
                                 "senderID": "507474617924",
-                                "ecb": 'angular.element(document.querySelector("#home")).scope().handleGcmPushNotification'
+                                "ecb": 'angular.element(document.querySelector("body")).scope().handleGcmPushNotification'
                             }
                         );
                     } else {
@@ -189,7 +189,7 @@ angular.module('starter.services', [])
                                 "badge": "true",
                                 "sound": "true",
                                 "alert": "true",
-                                "ecb": 'angular.element(document.querySelector("#home")).scope().handleApnPushNotification'
+                                "ecb": 'angular.element(document.querySelector("body")).scope().handleApnPushNotification'
                             });
 
                     }
