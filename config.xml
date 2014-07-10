@@ -6,10 +6,10 @@
         id        = "com.label.GuffingHell"
         version   = "1.8.3">
 
-    <name>Guff 5.0</name>
+    <name>Guff</name>
 
     <description>
-        Guff App V5
+        Guff
     </description>
 
     <author href="http://thisislabel.co.uk" email="guff@thisislabel.co.uk">
