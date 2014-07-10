@@ -150,6 +150,8 @@ angular.module('starter.controllers', [])
 
     $scope.messageWatcher = function() {
 
+        console.log(141-sendMessageForm.message.value.length);
+
         $scope.charLeft = 141-sendMessageForm.message.value.length;
 
         if(sendMessageForm.message.value.length<=0 || $scope.charLeft < 0) {
@@ -167,8 +169,6 @@ angular.module('starter.controllers', [])
 
     $scope.sendMessage = function(message) {
 
-        console.log(message);
-
         message.accuracy = GetLocationService.getAccuracy();
         message.latitude = GetLocationService.getLatitude();
         message.longitude = GetLocationService.getLongitude();
@@ -178,16 +178,14 @@ angular.module('starter.controllers', [])
             long: message.longitude
         };
 
-        console.log($scope.sendMessageForm);
-
         if ($scope.sendMessageForm.$valid) {
             
             document.getElementById("send").classList.add("disabled");
 
             MessageService.send(message, PushService.token_id).then(function(data) {
 
-                sendMessageForm.message.value = '';
-                $scope.charLeft = 141;
+                sendMessageForm.reset();
+                $scope.messageWatcher();
                 $rootScope.$emit("addMessage", message);
 
             }, function(error) {
