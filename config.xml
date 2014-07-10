@@ -4,12 +4,12 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.label.GuffingHell"
-        version   = "1.8.2">
+        version   = "1.8.3">
 
-    <name>Guff 5.0</name>
+    <name>Guff</name>
 
     <description>
-        Guff App V5
+        Guff
     </description>
 
     <author href="http://thisislabel.co.uk" email="guff@thisislabel.co.uk">
