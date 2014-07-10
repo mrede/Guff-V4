@@ -16,14 +16,15 @@ angular.module('starter.services', [])
             message: "There has been a problem sending your message"
         }];
 
-        var environment = "http://dev.guff.me.uk/message/";
+        var environment = "http://dev.guff.me.uk/";
+        //var environment = "http://localhost:3000/";
 
         return {
             all: function(loc, token) {
 
                 var deferred = $q.defer();
                 console.log("Function:", loc, token);
-                var endpoint = environment + loc.lat + "/" + loc.long + "/" + token; //app.token_id
+                var endpoint = environment + "/message/" + loc.lat + "/" + loc.long + "/" + token; //app.token_id
 
                 if ($window.navigator.onLine) {
 
@@ -46,7 +47,7 @@ angular.module('starter.services', [])
             },
             send: function(message, token) {
                 var deferred = $q.defer();
-                var endpoint = "http://dev.guff.me.uk/message.json"
+                var endpoint = environment + "message.json"
                 var data = "message=" + message.message + "&accuracy=" + message.accuracy + "&latitude=" + message.latitude + "&longitude=" + message.longitude + "&token=" + token;
                 if ($window.navigator.onLine) {
                     $http({
@@ -238,7 +239,7 @@ angular.module('starter.services', [])
 
                     app.http({
                         method: 'GET',
-                        url: 'http://dev.guff.me.uk/register/' + platform + '.json?token=' + id,
+                        url: environment + 'register/' + platform + '.json?token=' + id,
                     }).
                     success(function(data, status, headers, config) {
                         console.log("REgister success");
