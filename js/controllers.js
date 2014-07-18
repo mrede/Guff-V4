@@ -4,9 +4,9 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($rootScope, $scope, $http, PushService, $ionicModal, $ionicLoading, $ionicPopup, GetLocationService, MessageService) {
     $rootScope.token_id = '12345'; //default
 
-    $rootScope.resumed = function() {
+    $rootScope.$on('resumed', function(event) {
         $scope.getLoc();
-    };
+    });
 
     $scope.getLoc = function() {
 
