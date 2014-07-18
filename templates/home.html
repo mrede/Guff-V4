@@ -12,8 +12,8 @@
 <ion-refresher on-refresh="getLoc()" pulling-text="Pull to refresh..." refreshing-text="" refreshing-icon="ion-loading-c">              
 </ion-refresher>
 <ion-list>
-  <ion-item ng-repeat="message in messages" class="item item-text-wrap">
-  	<span class="item-note">
+  <ion-item id="messages" ng-repeat="message in messages" class="item item-text-wrap">
+  	<span class="item-note" data-elapsed="{{message.elapsed}}" data-expires-at="{{message.expires_at}}">
       {{message.t}}
     </span>
 

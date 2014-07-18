@@ -4,6 +4,10 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($rootScope, $scope, $http, PushService, $ionicModal, $ionicLoading, $ionicPopup, GetLocationService, MessageService) {
     $rootScope.token_id = '12345'; //default
 
+    $rootScope.resumed = function() {
+        $scope.getLoc();
+    };
+
     $scope.getLoc = function() {
 
         // show loading screen
@@ -59,34 +63,64 @@ angular.module('starter.controllers', [])
 
     $scope.getMessages = function() {
         MessageService.all($scope.coordinates, PushService.token_id).then(function(data) {
+
             data.map(function(i) { 
 
-                 when_ago = 7200 - i.t;
-                 minutes = Math.round(when_ago/60);
+                 var when_ago = 7200 - i.t;
+                 var minutes = Math.round(when_ago/60);
+
                  if(minutes<=0) {
                    i.t = "Just now";
                  } else {
                    i.t = minutes + " min";
                  }
+
+                 i.elapsed = minutes;
+
+                 $rootScope.messageChecker = setInterval( function(){ $scope.checkMessagesTime(); }, 60000);
                  
             });
             $scope.messages = data;
             $scope.$broadcast('scroll.refreshComplete');
+
         }, function(error) {
 
-            $scope.showAlert = function() {
-                var alertPopup = $ionicPopup.alert({
-                  title: 'Don\'t eat that!',
-                  template: 'It might taste good'
-                });
-                alertPopup.then(function(res) {
-                  console.log('Thank you for not eating my delicious ice cream cone');
-                });
-            };
-            console.log(error);
+            // $scope.showAlert = function() {
+            //     var alertPopup = $ionicPopup.alert({
+            //       title: 'Don\'t eat that!',
+            //       template: 'It might taste good'
+            //     });
+            //     alertPopup.then(function(res) {
+            //       console.log('Thank you for not eating my delicious ice cream cone');
+            //     });
+            // };
+
+            // console.error(error);
 
         });
     }; // get messages
+
+    $scope.checkMessagesTime = function() {
+        
+        var els = document.querySelectorAll('#messages span');
+        for(var i = 0; i < els.length; i++) {
+
+            var elapsed = parseInt(els[i].getAttribute('data-elapsed'));
+            var updated = elapsed + 1;
+
+            els[i].setAttribute('data-elapsed', updated);
+            if(updated<=0) {
+              els[i].innerHTML = "Just now";
+            } else if(updated>=120) {
+              els[i].parentNode.classList.add('expired');
+            }
+            else {
+              els[i].innerHTML = updated + " min";
+            }
+            
+        }
+
+    };
 
     $rootScope.$on("addMessage", function(event, message) {
         var message = {
@@ -149,8 +183,6 @@ angular.module('starter.controllers', [])
 .controller('ModalCtrl', function($rootScope, $scope, $ionicModal, MessageService, GetLocationService, PushService) {
 
     $scope.messageWatcher = function() {
-
-        console.log(141-sendMessageForm.message.value.length);
 
         $scope.charLeft = 141-sendMessageForm.message.value.length;
 
