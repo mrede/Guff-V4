@@ -76,10 +76,10 @@ angular.module('starter.controllers', [])
                  }
 
                  i.elapsed = minutes;
-
-                 $rootScope.messageChecker = setInterval( function(){ $scope.checkMessagesTime(); }, 60000);
                  
             });
+
+            $rootScope.messageChecker = setInterval( function(){ $scope.checkMessagesTime(); }, 60000);
             $scope.messages = data;
             $scope.$broadcast('scroll.refreshComplete');
 
@@ -101,8 +101,9 @@ angular.module('starter.controllers', [])
     }; // get messages
 
     $scope.checkMessagesTime = function() {
-        
+
         var els = document.querySelectorAll('#messages span');
+
         for(var i = 0; i < els.length; i++) {
 
             var elapsed = parseInt(els[i].getAttribute('data-elapsed'));
@@ -117,7 +118,7 @@ angular.module('starter.controllers', [])
             else {
               els[i].innerHTML = updated + " min";
             }
-            
+
         }
 
     };
@@ -126,7 +127,8 @@ angular.module('starter.controllers', [])
         var message = {
             d: 0,
             m: message.message,
-            t: 'Just now'
+            t: 'Just now',
+            elapsed: 0
         }
         $scope.messages.unshift(message);
         $scope.modal.hide();

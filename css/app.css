@@ -46,6 +46,9 @@
   position: relative;
   left: -5px;
   bottom: 1px;
+  float: none;
+  padding: 0;
+  margin: 0;
 }
 
 .button.button-calm.active, .button.button-calm.activated {
