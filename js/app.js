@@ -33,8 +33,7 @@ var theApp = angular.module('starter', ['ionic', 'starter.services', 'starter.co
 //This bit is not used at the moment, but might come in handy later - Ben
 .run(function($window, $rootScope) {
 
-      //$rootScope.messageChecker = setInterval( function(){ $rootScope.checkMessage(); }, 1000);
-      //document.addEventListener("resume", $rootScope.resumed(), false);
+      document.addEventListener("resume", $rootScope.resumed(), false);
 
       $rootScope.online = navigator.onLine;
       console.log("Default:", $rootScope.online)
