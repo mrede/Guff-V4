@@ -1,3 +1,5 @@
+var environment = "http://dev.guff.me.uk/";
+
 angular.module('starter.services', [])
 
 .factory('MessageService', ['$q', '$window', '$http',
@@ -16,7 +18,7 @@ angular.module('starter.services', [])
             message: "There has been a problem sending your message"
         }];
 
-        var environment = "http://dev.guff.me.uk/";
+        
         //var environment = "http://localhost:3000/";
 
         return {
