@@ -154,8 +154,6 @@ angular.module('starter.services', [])
 .factory('PushService', ['$http', 
     function($http) {
 
-var db = window.localStorage;
-db.setItem('push_token', 'banana')
 console.log("TEST done")
         var pushNotification = false;
         
