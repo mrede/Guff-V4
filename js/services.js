@@ -184,7 +184,7 @@ angular.module('starter.services', [])
                         pushNotification.register(
                             app.pushRegisterSuccessHandler,
                             app.pushRegisterErrorHandler, {
-                                "senderID": "507474617924",
+                                "senderID": "1078196876904",
                                 "ecb": 'angular.element(document.querySelector("body")).scope().handleGcmPushNotification'
                             }
                         );
