@@ -29,6 +29,7 @@ angular.module('starter.services', [])
 
                 if (!loc) {
                     alert("FAKE LOCATIONARGHGHGH")
+                    loc = {lat: 0, long: 1}
                 }
 
                 var endpoint = environment + "/message/" + loc.lat + "/" + loc.long + "/" + token; //app.token_id

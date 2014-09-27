@@ -65,6 +65,7 @@ angular.module('starter.controllers', [])
         //Only message if coords exist
         if (!$scope.coordinates) {
             alert("Fake message");
+            return;
         }
         MessageService.all($scope.coordinates, $rootScope.token_id).then(function(data) {
 
