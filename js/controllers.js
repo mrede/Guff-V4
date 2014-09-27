@@ -165,7 +165,11 @@ angular.module('starter.controllers', [])
         $scope.getMessages();
 
         $rootScope.token_id = PushService.token_id;
-        console.log("Token ID: ", PushService.token_id);
+        alert("Saving Token ID: "+ PushService.token_id);
+
+        var storage = window.localStorage;
+        storage.setItem('push_token', PushService.token_id);
+
     }
 
     $rootScope.handleApnPushNotification = function(e) {
