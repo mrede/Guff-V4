@@ -210,7 +210,7 @@ console.log("TEST done")
                     this.http = $http;
                     console.log("GCM", e, this.http);
                     alert("GCM: event: "+e.event);
-                    alert("GCM: token id: "+app.token_id)
+                    
                     switch (e.event) {
                         case 'registered':
                             if (e.regid.length > 0) {
@@ -219,6 +219,7 @@ console.log("TEST done")
 
                                 //alert('registration id = '+e.regid);
                                 app.token_id = e.regid;
+                                alert("GCM: token id: "+app.token_id);
                                 app.sendRegistration(e.regid, 'android')
                             }
                             break;

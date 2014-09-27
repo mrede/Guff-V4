@@ -161,9 +161,10 @@ angular.module('starter.controllers', [])
         console.log("GCM Push Notification Received")
 
         PushService.onNotificationGCM($http, e);
-        
+
         $scope.getMessages();
 
+        $rootScope.token_id = PushService.token_id;
         console.log("Token ID: ", PushService.token_id);
     }
 
