@@ -154,7 +154,9 @@ angular.module('starter.services', [])
 .factory('PushService', ['$http', 
     function($http) {
 
-
+var db = window.localStorage;
+db.setItem('push_token', 'banana')
+console.log("TEST done")
         var pushNotification = false;
         
         if (window.plugins) {
@@ -209,6 +211,8 @@ angular.module('starter.services', [])
                 onNotificationGCM: function($http, e) {
                     this.http = $http;
                     console.log("GCM", e, this.http);
+                    alert("GCM: event: "+e.event);
+                    alert("GCM: token id: "+app.token_id)
                     switch (e.event) {
                         case 'registered':
                             if (e.regid.length > 0) {
