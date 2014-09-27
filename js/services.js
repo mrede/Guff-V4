@@ -161,7 +161,6 @@ angular.module('starter.services', [])
 .factory('PushService', ['$http', 
     function($http) {
 
-console.log("TEST done")
         var pushNotification = false;
         
         if (window.plugins) {
