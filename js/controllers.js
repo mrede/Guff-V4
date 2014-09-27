@@ -62,7 +62,7 @@ angular.module('starter.controllers', [])
 
 
     $scope.getMessages = function() {
-        MessageService.all($scope.coordinates, PushService.token_id).then(function(data) {
+        MessageService.all($scope.coordinates, $rootScope.token_id).then(function(data) {
 
             data.map(function(i) { 
 
@@ -222,7 +222,7 @@ angular.module('starter.controllers', [])
             
             document.getElementById("send").classList.add("disabled");
 
-            MessageService.send(message, PushService.token_id).then(function(data) {
+            MessageService.send(message, $rootScope.token_id).then(function(data) {
 
                 sendMessageForm.reset();
                 $scope.messageWatcher();
