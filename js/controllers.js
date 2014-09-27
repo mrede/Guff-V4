@@ -2,7 +2,25 @@ angular.module('starter.controllers', [])
 
 // A simple controller that fetches a list of data from a service
 .controller('HomeCtrl', function($rootScope, $scope, $http, PushService, $ionicModal, $ionicLoading, $ionicPopup, GetLocationService, MessageService) {
-    $rootScope.token_id = '12345'; //default
+    $rootScope.token_id = ''; //default
+
+    $rootScope.getTokenID = function() {
+        if (!$rootScope.token_id) {
+            var storage = window.localStorage;
+            if (storage) {
+                push_token = storage.getItem('push_token');
+                $rootScope.token_id = push_token;
+            }
+        }
+        return $rootScope.token_id;
+    }
+
+    $rootScope.setTokenID = function(new_token) {
+        var storage = window.localStorage;
+        if (storage) {
+            storage.setItem('push_token', new_token)
+        }
+    }
 
     $rootScope.$on('resumed', function(event) {
         $scope.getLoc();
@@ -67,7 +85,7 @@ angular.module('starter.controllers', [])
             //alert("Fake message");
             return;
         }
-        MessageService.all($scope.coordinates, $rootScope.token_id).then(function(data) {
+        MessageService.all($scope.coordinates, $rootScope.getTokenID()).then(function(data) {
 
             data.map(function(i) { 
 
@@ -149,17 +167,15 @@ angular.module('starter.controllers', [])
 
     // push
     var storage = window.localStorage;
-    var push_token = false;
+    var push_token = $rootScope.getTokenID();
 
-    if (storage) {
-        push_token = storage.getItem('push_token');
-        $rootScope.token_id = push_token;
-    }
 
     if (!push_token) {
         console.log("Calling PushService register")
         PushService.register();
     }
+
+    
 
     $rootScope.handleGcmPushNotification = function(e) {
         //alert("GCM Push Notification Received");
@@ -169,11 +185,8 @@ angular.module('starter.controllers', [])
 
         $scope.getMessages();
 
-        $rootScope.token_id = PushService.token_id;
+        $rootScope.setTokenID(PushService.token_id);
         //alert("Saving Token ID: "+ PushService.token_id);
-
-        var storage = window.localStorage;
-        storage.setItem('push_token', PushService.token_id);
 
     }
 
@@ -184,7 +197,7 @@ angular.module('starter.controllers', [])
         $scope.getMessages();
         PushService.onNotificationAPN(e);
 
-        
+        $rootScope.setTokenID(PushService.token_id);
 
         console.log("FINISHED: iOS Push Notification Received")
 
@@ -227,7 +240,7 @@ angular.module('starter.controllers', [])
             
             document.getElementById("send").classList.add("disabled");
 
-            MessageService.send(message, $rootScope.token_id).then(function(data) {
+            MessageService.send(message, $rootScope.getTokenID()).then(function(data) {
 
                 sendMessageForm.reset();
                 $scope.messageWatcher();
