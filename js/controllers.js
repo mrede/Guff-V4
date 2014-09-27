@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
     $scope.getMessages = function() {
         //Only message if coords exist
         if (!$scope.coordinates) {
-            alert("Fake message");
+            //alert("Fake message");
             return;
         }
         MessageService.all($scope.coordinates, $rootScope.token_id).then(function(data) {
@@ -162,7 +162,7 @@ angular.module('starter.controllers', [])
     }
 
     $rootScope.handleGcmPushNotification = function(e) {
-        alert("GCM Push Notification Received");
+        //alert("GCM Push Notification Received");
         console.log("GCM Push Notification Received")
 
         PushService.onNotificationGCM($http, e);
@@ -170,7 +170,7 @@ angular.module('starter.controllers', [])
         $scope.getMessages();
 
         $rootScope.token_id = PushService.token_id;
-        alert("Saving Token ID: "+ PushService.token_id);
+        //alert("Saving Token ID: "+ PushService.token_id);
 
         var storage = window.localStorage;
         storage.setItem('push_token', PushService.token_id);

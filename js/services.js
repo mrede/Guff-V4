@@ -216,7 +216,7 @@ console.log("TEST done")
                 onNotificationGCM: function($http, e) {
                     this.http = $http;
                     console.log("GCM", e, this.http);
-                    alert("GCM: event: "+e.event);
+                    //alert("GCM: event: "+e.event);
                     
                     switch (e.event) {
                         case 'registered':
@@ -226,7 +226,7 @@ console.log("TEST done")
 
                                 //alert('registration id = '+e.regid);
                                 app.token_id = e.regid;
-                                alert("GCM: token id: "+app.token_id);
+                                //alert("GCM: token id: "+app.token_id);
                                 app.sendRegistration(e.regid, 'android')
                             }
                             break;
