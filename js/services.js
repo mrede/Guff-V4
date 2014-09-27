@@ -24,6 +24,10 @@ angular.module('starter.services', [])
         return {
             all: function(loc, token) {
 
+                if (!loc) {
+                    alert("FAKE LOCATION")
+                    return;
+                }
                 var deferred = $q.defer();
                 var endpoint = environment + "/message/" + loc.lat + "/" + loc.long + "/" + token; //app.token_id
 
