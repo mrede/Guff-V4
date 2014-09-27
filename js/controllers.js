@@ -146,12 +146,13 @@ angular.module('starter.controllers', [])
     var storage = window.localStorage;
     var push_token = false;
 
-    if (!storage) {
-        push_token = storage.getItem('push_token');
-    }
-
     if (!push_token) {
-        console.log("Calling register")
+        push_token = storage.getItem('push_token');
+        $rootScope.token_id = push_token;
+    }
+    console.log("Push token", push_token)
+    if (!push_token) {
+        console.log("Calling PushService register")
         PushService.register();
     }
 
