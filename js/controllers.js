@@ -150,18 +150,18 @@ angular.module('starter.controllers', [])
         push_token = storage.getItem('push_token');
         $rootScope.token_id = push_token;
     }
-    
+
     if (!push_token) {
         console.log("Calling PushService register")
         PushService.register();
     }
 
     $rootScope.handleGcmPushNotification = function(e) {
-        //alert("GCM Push Notification Received");
+        alert("GCM Push Notification Received");
         console.log("GCM Push Notification Received")
 
         PushService.onNotificationGCM($http, e);
-
+        
         $scope.getMessages();
 
         console.log("Token ID: ", PushService.token_id);
